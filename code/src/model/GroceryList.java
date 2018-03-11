@@ -5,76 +5,75 @@
  */
 package model;
 import integration.GroceryItemDTO;
-import java.util.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.stream.Collectors;
 /**
  *
  * @author GazalaS <gazalafshaikh@gmail.com>
  */
 public class GroceryList {
     
-    private List<GroceryItem> groceryList;
+    ArrayList<GroceryItem> groceryList;
     
     public GroceryList(){
         groceryList = new ArrayList<>();       
     }
     
-    
-    public void addItemToGroceryList(GroceryItemDTO objGroceryItemDTO){
-        GroceryItem groceryItem = new GroceryItem();
-        populateGroceryItem(groceryItem,objGroceryItemDTO);
-        groceryList.add(groceryItem);
+    public ArrayList<GroceryItem> getGroceryList(){
+        return groceryList;
+    }
+    public void addItemToGroceryList(GroceryItemDTO objGroceryItemDTO){      
+        groceryList.add(createGroceryItem(objGroceryItemDTO));
     }
     
     public void editItemInGroceryList(GroceryItemDTO objGroceryItemDTO){
-        GroceryItem groceryItem = new GroceryItem();
-        //groceryList.remove(objGroceryItemDTO.getItemCount()-1);
-       
-        //groceryItem = new GroceryItem();
-        populateGroceryItem(groceryItem,objGroceryItemDTO);
-        groceryList.set(objGroceryItemDTO.getItemCount()-1, groceryItem);
-        //groceryList.add(groceryItem);
+        updateGroceryItem(groceryList.get(objGroceryItemDTO.getItemIndex()-1),objGroceryItemDTO);
     }
     
     public void removeItemFromGroceryList(int itemIndex){
         groceryList.remove(itemIndex - 1);
     }
     
-    public void printGroceryList(){
-        
-        if (!groceryList.isEmpty()){   
-            System.out.println("Running Low:");
-            groceryList.stream()
-                        .filter(item -> "Running Low".equals(item.getStatus()) )
-                        .forEach((item) -> {
-                            System.out.println((groceryList.indexOf(item) + 1) + ". " + item.printEachItem()+ "\t");
-                        });
-            System.out.println("\nNeed to Buy:");
-            groceryList.stream()
-                        .filter(item -> "Need to Buy".equals(item.getStatus()) )
-                        .forEach((item) -> {
-                            System.out.println((groceryList.indexOf(item) + 1) + ". " + item.printEachItem()+ "\t");
-                        });
-            System.out.println("\nBrought");
-            groceryList.stream()
-                        .filter(item -> "Brought".equals(item.getStatus()) )
-                        .forEach((item) -> {
-                            System.out.println((groceryList.indexOf(item) + 1) + ". " + item.printEachItem()+ "\t");
-                        });
-        }
-        else{
-           System.out.println("Grocey List is empty. \nPlease select Option 2 to add Items");
-        }
+    public ArrayList<GroceryItem> getGroceryListByStatus(String status){
+        return groceryList.stream()
+                .filter(item -> status.equals(item.getStatus()) )
+                .collect(Collectors.toCollection(ArrayList::new));
     }
     
-    private void populateGroceryItem(GroceryItem groceryItem, GroceryItemDTO objGroceryItemDTO){
-           
-        groceryItem.setItemCount(objGroceryItemDTO.getItemCount());
+    /**
+     *
+     * @param purchaseByDate
+     * @return 
+     * @throws ParseException
+     */
+    public ArrayList<GroceryItem> getGroceryListByDate(String purchaseByDate) throws ParseException{
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
+        Date todaysDate = formatter.parse(purchaseByDate);
+        
+        return groceryList.stream()
+                .filter((GroceryItem item) -> {                   
+                    return todaysDate.compareTo(item.getPurchaseByDate()) == 0;                    
+                })
+                .collect(Collectors.toCollection(ArrayList::new));
+    }
+        
+    private GroceryItem createGroceryItem(GroceryItemDTO objGroceryItemDTO){
+        GroceryItem groceryItem = new GroceryItem();   
+        updateGroceryItem(groceryItem, objGroceryItemDTO);
+        return groceryItem;
+    }
+    
+    private void updateGroceryItem(GroceryItem groceryItem, GroceryItemDTO objGroceryItemDTO){
         groceryItem.setItemName(objGroceryItemDTO.getItemName());
         groceryItem.setQuantity(objGroceryItemDTO.getQuantity());
         groceryItem.setPurchaseByDate(objGroceryItemDTO.getPurchaseByDate());
         groceryItem.setCategory(objGroceryItemDTO.getCategory());
         groceryItem.setStatus(objGroceryItemDTO.getStatus());
-        
     }
             
 }

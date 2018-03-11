@@ -22,7 +22,6 @@ public class Main {
         // TODO code application logic here
         
         GroceryListController objGroceryListController = new GroceryListController();
-        objGroceryListController.displayWelcomeMessage();
         objGroceryListController.displayMenu();
         /* FileHandler objFileHandler = new FileHandler();
         try {

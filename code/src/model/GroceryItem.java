@@ -5,27 +5,25 @@
  */
 package model;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  *
  * @author GazalaS <gazalafshaikh@gmail.com>
  */
 public class GroceryItem {
-    private int itemCount;
     private String itemName;
     private String quantity;
-    private String purchaseByDate;
+    private Date purchaseByDate;
     private String category;
     private String status;
-    
-    public int getItemCount(){
-        return itemCount;
-    }
     
     public String getItemName(){
         return itemName;
     }
 
-    public String getPurchaseByDate(){
+    public Date getPurchaseByDate(){
         return purchaseByDate;
     }
     
@@ -40,16 +38,12 @@ public class GroceryItem {
     public String getStatus(){
         return status;
     }
-    
-    public void setItemCount(int itemCount){
-        this.itemCount = itemCount;
-    }
-    
+        
     public void setItemName(String itemName){
         this.itemName = itemName;
     }
     
-    public void setPurchaseByDate(String purchaseByDate){
+    public void setPurchaseByDate(Date purchaseByDate){
         this.purchaseByDate = purchaseByDate;
     }
     
@@ -65,7 +59,11 @@ public class GroceryItem {
         this.status = status;
     }
     
-    public String printEachItem(){
-        return (getItemName() + " " + getQuantity() + " " + getPurchaseByDate());
+    public String printGroceryItemDetails(){
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy"); 
+        return (getItemName() + "\t" + getQuantity() + "\t" + getCategory() + "\t" + formatter.format(getPurchaseByDate()));
+    } 
+    public String printGroceryItem(){
+        return (getItemName() + "\t" + getQuantity() + "\t" + getStatus());
     }
 }

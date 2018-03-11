@@ -5,6 +5,8 @@
  */
 package integration;
 
+import java.util.Date;
+
 /**
  *
  * @author GazalaS <gazalafshaikh@gmail.com>
@@ -12,36 +14,32 @@ package integration;
 public class GroceryItemDTO {
     private String itemName;
     private String quantity;
-    private String purchaseByDate;
+    private Date purchaseByDate;
     private String category;
     private String status;
-    private int itemCount ;
+    private int itemIndex ;
     
     public GroceryItemDTO(){
     }
-    
-    public GroceryItemDTO(int itemCount){
-            this.itemCount = itemCount;
-    }
-    
-    public GroceryItemDTO(String itemName,String quantity, String purchaseByDate, String category, String status,int itemCount){
+      
+    public GroceryItemDTO(String itemName,String quantity, Date purchaseByDate, String category, String status,int itemIndex){
         this.itemName = itemName;
         this.quantity = quantity;
         this.purchaseByDate = purchaseByDate;
         this.category = category;
         this.status = status;
-        this.itemCount = itemCount;
+        this.itemIndex = itemIndex;
     }
     
-    public int getItemCount(){
-        return itemCount;
+    public int getItemIndex(){
+        return itemIndex;
     }
     
     public String getItemName(){
         return itemName;
     }
 
-    public String getPurchaseByDate(){
+    public Date getPurchaseByDate(){
         return purchaseByDate;
     }
     

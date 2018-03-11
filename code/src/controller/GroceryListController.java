@@ -7,6 +7,9 @@ package controller;
 import view.*;
 import model.*;
 import integration.GroceryItemDTO;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author GazalaS <gazalafshaikh@gmail.com>
@@ -15,11 +18,11 @@ public class GroceryListController {
     
     GroceryList objGroceryList;
     WelcomeMessage objWelcomeMessage;
-    Menu objMenu;
+    MenuHandler objMenuHandler;
     
     public GroceryListController(){
         objGroceryList = new GroceryList();
-        objMenu = new Menu();
+        objMenuHandler = new MenuHandler();
         objWelcomeMessage=  new WelcomeMessage();
     }
             
@@ -27,9 +30,8 @@ public class GroceryListController {
         objWelcomeMessage.printWelcomeMessage();
     }
     
-    public void displayMenu(){
-        
-        objMenu.printMenu();
+    public void displayMenu(){       
+        objMenuHandler.processMenu();
     }
     
     public void addItemtoGroceryList(GroceryItemDTO objGroceryItemDTO){
@@ -44,9 +46,28 @@ public class GroceryListController {
         objGroceryList.removeItemFromGroceryList(itemIndex);
     }
     
-    public void printGroceryList()
+    public boolean printGroceryListByStatus(String status)
     {
-        objGroceryList.printGroceryList();
+        boolean isEmpty = true;               
+        if (!objGroceryList.getGroceryListByStatus(status).isEmpty()){
+            objMenuHandler.printMessage(status);
+            objGroceryList.getGroceryListByStatus(status).stream()
+                    .forEach((item) -> {objMenuHandler.printEachItem((objGroceryList.getGroceryList().indexOf(item) + 1) + ". " + item.printGroceryItemDetails());});
+            isEmpty = false;
+        }
+        return isEmpty;    
     }
-         
+    
+    public void printGroceryListByDate(String purchaseByDate)
+    {           
+        try {        
+            if (!objGroceryList.getGroceryListByDate(purchaseByDate).isEmpty()){
+                objMenuHandler.printMessage("Grocery Status:");
+                objGroceryList.getGroceryListByDate(purchaseByDate).stream()
+                        .forEach((item) -> {objMenuHandler.printEachItem((objGroceryList.getGroceryList().indexOf(item) + 1) + ". " + item.printGroceryItem());});
+            }   
+        } catch (ParseException ex) {
+            Logger.getLogger(GroceryListController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }        
 }
