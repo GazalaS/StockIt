@@ -4,37 +4,30 @@
  * and open the template in the editor.
  */
 package startup;
-//import filedata.FileHandler;
-import controller.GroceryListController;
-//import java.util.ArrayList;
 
+import controller.GroceryListController;
+import view.MenuHandler;
 
 /**
- *
+ * Starts the application
  * @author GazalaS <gazalafshaikh@gmail.com>
  */
 public class Main {
 
     /**
-     * @param args the command line arguments
+     * This is the main method of the entire application.
+     * @param args the command line arguments [not provided]
      */
     public static void main(String[] args) {
         // TODO code application logic here
         
         GroceryListController objGroceryListController = new GroceryListController();
-        objGroceryListController.displayMenu();
-        /* FileHandler objFileHandler = new FileHandler();
+        MenuHandler objMenuHandler = new MenuHandler(objGroceryListController);
         try {
-            ArrayList<String> items = new ArrayList<>();
-            items = objFileHandler.scanToRead();
-            items.forEach((item) -> {
-                 System.out.println(item);
-            });
-            //objFileHandler.readFromFile();
-            } 
-        catch (FileNotFoundException ex) {
-            System.err.println("File not found");
-        } */          
- }      
-    
+            objMenuHandler.processMenu();
+        } catch (Exception ex) {
+            System.out.println("Error :" + ex.getMessage());
+        }
+
+    }         
 }

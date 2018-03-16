@@ -9,8 +9,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 /**
  *
@@ -27,41 +25,14 @@ public class GroceryList {
     public ArrayList<GroceryItem> getGroceryList(){
         return groceryList;
     }
-    public void addItemToGroceryList(GroceryItemDTO objGroceryItemDTO){      
+    public void addGroceryItem(GroceryItemDTO objGroceryItemDTO){      
         groceryList.add(createGroceryItem(objGroceryItemDTO));
     }
     
-    public void editItemInGroceryList(GroceryItemDTO objGroceryItemDTO){
+    public void editGroceryItem(GroceryItemDTO objGroceryItemDTO){
         updateGroceryItem(groceryList.get(objGroceryItemDTO.getItemIndex()-1),objGroceryItemDTO);
     }
     
-    public void removeItemFromGroceryList(int itemIndex){
-        groceryList.remove(itemIndex - 1);
-    }
-    
-    public ArrayList<GroceryItem> getGroceryListByStatus(String status){
-        return groceryList.stream()
-                .filter(item -> status.equals(item.getStatus()) )
-                .collect(Collectors.toCollection(ArrayList::new));
-    }
-    
-    /**
-     *
-     * @param purchaseByDate
-     * @return 
-     * @throws ParseException
-     */
-    public ArrayList<GroceryItem> getGroceryListByDate(String purchaseByDate) throws ParseException{
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
-        Date todaysDate = formatter.parse(purchaseByDate);
-        
-        return groceryList.stream()
-                .filter((GroceryItem item) -> {                   
-                    return todaysDate.compareTo(item.getPurchaseByDate()) == 0;                    
-                })
-                .collect(Collectors.toCollection(ArrayList::new));
-    }
-        
     private GroceryItem createGroceryItem(GroceryItemDTO objGroceryItemDTO){
         GroceryItem groceryItem = new GroceryItem();   
         updateGroceryItem(groceryItem, objGroceryItemDTO);
@@ -75,5 +46,33 @@ public class GroceryList {
         groceryItem.setCategory(objGroceryItemDTO.getCategory());
         groceryItem.setStatus(objGroceryItemDTO.getStatus());
     }
-            
+    
+    public void removeGroceryItem(int itemIndex){
+        groceryList.remove(itemIndex - 1);
+    }
+    
+    public ArrayList<GroceryItem> getGroceryListByStatus(String status){
+        return groceryList.stream()
+                .filter(item -> status.equals(item.getStatus()) )
+                .sorted((a,b)-> a.getPurchaseByDate().compareTo(b.getPurchaseByDate()))
+                .collect(Collectors.toCollection(ArrayList::new));
+    }
+    
+    /**
+     *
+     * @param purchaseByDate
+     * @return 
+     * @throws ParseException
+     */
+    public ArrayList<GroceryItem> getGroceryListByDate(String strTodaysDate) throws ParseException{
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
+        Date todaysDate = formatter.parse(strTodaysDate);
+        
+        return groceryList.stream()
+                .filter((GroceryItem item) -> {                   
+                    return todaysDate.compareTo(item.getPurchaseByDate()) == 0;                    
+                })
+                .sorted((a,b)-> a.getStatus().compareTo(b.getStatus()))
+                .collect(Collectors.toCollection(ArrayList::new));
+    }   
 }

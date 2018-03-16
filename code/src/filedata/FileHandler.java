@@ -9,37 +9,47 @@ package filedata;
  *
  * @author GazalaS <gazalafshaikh@gmail.com>
  */
+import integration.GroceryItemDTO;
 import java.util.ArrayList;
 import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.file.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 
 public class FileHandler{
-        // Default responses to use if we don't recognise a word.
-    private ArrayList<String> items;
-    // The name of the file containing the default responses.
-    private static final String GROCERY_LIST_FILE = "grocerylist.txt";
-     /**
-     * Build up a list of default responses from which we can pick
-     * if we don't know what else to say.
+   
+    private static final String GROCERY_LIST_FILE = "grocerylist.csv";
+    
+    /**
      * @return 
+     * @throws java.text.ParseException 
      */
-    
-    public FileHandler(){
-        items = new ArrayList<>();
-    }
-    
-            
-     public ArrayList readFromFile()
-    {
+
+    public ArrayList<GroceryItemDTO> readFromFile() throws ParseException
+    {    
+        ArrayList<GroceryItemDTO> groceryListDTO = new ArrayList<>();
         Charset charset = Charset.forName("US-ASCII");
         Path path = Paths.get(GROCERY_LIST_FILE);
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
+        
         try (BufferedReader reader = Files.newBufferedReader(path, charset)) {
             reader.readLine();
             String line;
+            int itemIndex = 1;
             while((line = reader.readLine()) != null) {
+                
                 String[] sections = line.split(",");
+                GroceryItemDTO objGroceryItemDTO = new GroceryItemDTO(
+                                                    itemIndex++,
+                                                    sections[0],
+                                                    sections[1],
+                                                    formatter.parse(sections[2]),
+                                                    sections[3],
+                                                    sections[4]);
+                groceryListDTO.add(objGroceryItemDTO);
             }
         }
         catch(FileNotFoundException e) {
@@ -49,7 +59,10 @@ public class FileHandler{
             System.err.println("A problem was encountered reading " +
                                GROCERY_LIST_FILE);
         }
-        return items;
+        return groceryListDTO;
     }    
-     
+    
+    public void saveToFile(ArrayList<GroceryItemDTO> groceryListDTO){
+       //yet to implement 
+    }
 }

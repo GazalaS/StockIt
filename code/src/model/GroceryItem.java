@@ -58,12 +58,4 @@ public class GroceryItem {
     public void setStatus(String status){
         this.status = status;
     }
-    
-    public String printGroceryItemDetails(){
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy"); 
-        return (getItemName() + "\t" + getQuantity() + "\t" + getCategory() + "\t" + formatter.format(getPurchaseByDate()));
-    } 
-    public String printGroceryItem(){
-        return (getItemName() + "\t" + getQuantity() + "\t" + getStatus());
-    }
 }

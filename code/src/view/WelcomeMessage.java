@@ -11,12 +11,12 @@ package view;
  */
 public class WelcomeMessage {
     
-    public void printWelcomeMessage(){
+    public void printWelcomeMessage(int countRunningLow, int countNeedToBuy){
         System.out.println("***********************");
         System.out.println("* Welcome to Stock It *");
         System.out.println("***********************");
-        System.out.format(" %d items Running Low \n", 2);  //go back here!
-        System.out.format(" %d items Need to Buy \n", 12); 
+        System.out.format(" %d items Running Low \n", countRunningLow);  //go back here!
+        System.out.format(" %d items Need to Buy \n", countNeedToBuy); 
         System.out.println("***********************");
     }
 }

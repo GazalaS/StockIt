@@ -7,3 +7,4 @@ A text based user interface via command line to maintain a Grocery List.
 5. Remove the Item from the list.
 6. Save the current Grocery List to file.
 7. The restore the Grocery List when application restarts.
+![](path/to/StockIt_Class_Daigram.png)

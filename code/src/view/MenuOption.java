@@ -8,7 +8,7 @@ package view;
  *
  * @author GazalaS <gazalafshaikh@gmail.com>
  */
-public class Menu {
+public class MenuOption {
     
     public void printMenu(){
         
@@ -22,4 +22,5 @@ public class Menu {
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         System.out.print(">> ");     // print prompt
     }
+    
 }
