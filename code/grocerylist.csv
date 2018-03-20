@@ -1,9 +1,8 @@
-ItemName,Quantity,PurchaseByDate,Category,Status
-Apples,2 kgs,15-March-2018,Edible,Running Low
-Oranges,12 pieces,15-March-2018,Edible,Need to Buy
-Tissue Paper,1 pack,15-March-2018,Inedible,Running Low
-Grapes,2 kgs,15-March-2018,Edible,Brought
-Figs,2 kgs,16-March-2018,Edible,Running Low
-Melons,2 pieces,16-March-2018,Edible,Need to Buy
-Shampoo,1 bottle,16-March-2018,Inedible,Running Low
-Rice,2 kgs,16-March-2018,Edible,Brought
+Oranges,12 pieces,16-Mar-2018,Edible,Need to Buy
+Tissue Paper,1 pack,17-Mar-2018,Inedible,Running Low
+Grapes,2 kgs,18-Mar-2018,Edible,Brought
+Figs,2 kgs,19-Mar-2018,Edible,Running Low
+Melons,2 pieces,20-Mar-2018,Edible,Need to Buy
+Shampoo,1 bottle,21-Mar-2018,Inedible,Running Low
+Rice,2 kgs,22-Mar-2018,Edible,Brought
+Coco powder,1 kgs pack,23-Mar-2018,Edible,Need to Buy
