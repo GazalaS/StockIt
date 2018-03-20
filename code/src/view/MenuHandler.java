@@ -30,7 +30,7 @@ public class MenuHandler {
         this.objGroceryListController = objGroceryListController;
     }
 
-    public void processMenu() throws ParseException {
+    public void processMenu() throws ParseException, IOException {
         MenuOption objMenu = new MenuOption();
         WelcomeMessage objWelcomeMessage = new WelcomeMessage();
 
@@ -38,6 +38,7 @@ public class MenuHandler {
 
         int countRunningLow = getCount("Running Low");
         int countNeedToBuy = getCount("Need to Buy");
+
         objWelcomeMessage.printWelcomeMessage(countRunningLow, countNeedToBuy);
 
         while (true) {
@@ -141,7 +142,6 @@ public class MenuHandler {
     }
 
     private void showGroceryListByStatus() {
-
         boolean isRunningLowEmpty = printGroceryListByStatus("Running Low");
         boolean isNeedToBuyEmpty = printGroceryListByStatus("Need to Buy");
         boolean isBroughtEmpty = printGroceryListByStatus("Brought");

@@ -21,21 +21,22 @@ import java.util.Scanner;
 
 public class FileHandler{
    
-    private static final String GROCERY_LIST_FILE = "grocerylist.csv";
+    private static final String GROCERY_LIST_FILE = "grocerylist.txt";
     
     /**
      * @return 
      * @throws java.text.ParseException 
      */
-
-    public ArrayList<GroceryItemDTO> readFromFile() throws ParseException
+    public ArrayList<GroceryItemDTO> readFromFile() throws ParseException, IOException
     {    
         ArrayList<GroceryItemDTO> groceryListDTO = new ArrayList<>();
         Charset charset = Charset.forName("US-ASCII");
         Path path = Paths.get(GROCERY_LIST_FILE);
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
         
-        try (BufferedReader reader = Files.newBufferedReader(path, charset)) {
+        if (Files.exists(path, new LinkOption[]{ LinkOption.NOFOLLOW_LINKS}))
+        {
+            BufferedReader reader = Files.newBufferedReader(path, charset);
             reader.readLine();
             String line;
             int itemIndex = 1;
@@ -51,13 +52,6 @@ public class FileHandler{
                                                     sections[4]);
                 groceryListDTO.add(objGroceryItemDTO);
             }
-        }
-        catch(FileNotFoundException e) {
-            System.err.println("Unable to open " + GROCERY_LIST_FILE);
-        }
-        catch(IOException e) {
-            System.err.println("A problem was encountered reading " +
-                               GROCERY_LIST_FILE);
         }
         return groceryListDTO;
     }    
