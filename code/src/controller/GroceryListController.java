@@ -7,6 +7,7 @@ package controller;
 import filedata.FileHandler;
 import model.GroceryList;
 import integration.GroceryItemDTO;
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import model.GroceryItem;
@@ -124,4 +125,12 @@ public class GroceryListController {
             objGroceryList.addGroceryItem(groceryItemDTO);
         }
     } 
+    
+        
+    public void saveToFile() throws IOException{
+        ArrayList<GroceryItemDTO> groceryListDTO = new  ArrayList<>();
+        populateGroceryListDTO(objGroceryList.getGroceryList(), groceryListDTO);
+        objFileHandler.saveToFile(groceryListDTO);       
+    }
+    
 }

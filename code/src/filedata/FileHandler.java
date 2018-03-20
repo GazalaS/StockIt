@@ -62,7 +62,14 @@ public class FileHandler{
         return groceryListDTO;
     }    
     
-    public void saveToFile(ArrayList<GroceryItemDTO> groceryListDTO){
-       //yet to implement 
+    public void saveToFile(ArrayList<GroceryItemDTO> groceryListDTO) throws IOException{
+       SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
+       Path resultsFile = Paths.get(GROCERY_LIST_FILE).toAbsolutePath();
+        FileWriter writer = new FileWriter(resultsFile.toString());
+        for (GroceryItemDTO groceryItemDTO : groceryListDTO) {
+            writer.write(groceryItemDTO.getItemName()+","+groceryItemDTO.getQuantity()+","+formatter.format(groceryItemDTO.getPurchaseByDate())+","+groceryItemDTO.getCategory()+","+groceryItemDTO.getStatus());
+            writer.write('\n');
+        }
+        writer.close();
     }
 }
