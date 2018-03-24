@@ -49,8 +49,8 @@ public class GroceryListController {
      */
     public void editItemInGroceryList(GroceryItemDTO objGroceryItemDTO) {
         GroceryItem objGroceryItem;
-        int itemIndex = objGroceryItemDTO.getItemIndex()-1;
-        objGroceryItem=populateGroceryItem(objGroceryList.getGroceryList().get(itemIndex),objGroceryItemDTO);
+        int itemIndex = objGroceryItemDTO.getItemIndex() - 1;
+        objGroceryItem = populateGroceryItem(objGroceryList.getGroceryList().get(itemIndex), objGroceryItemDTO);
         objGroceryList.editGroceryItem(itemIndex, objGroceryItem);
     }
 
@@ -125,15 +125,16 @@ public class GroceryListController {
      *
      * @throws ParseException
      * @throws java.io.IOException
+     * @throws java.lang.ClassNotFoundException
      */
-    public void readFromFile() throws ParseException, IOException, ClassNotFoundException {
-        ArrayList<GroceryItemDTO> groceryListFromFile = objFileHandler.readFromFile();
+    public void readFromFile() throws ParseException, IOException, ClassNotFoundException {        
+      ArrayList<GroceryItemDTO> groceryListFromFile = objFileHandler.readFromFile();
+        
         if (!groceryListFromFile.isEmpty()) {
-            for (GroceryItemDTO groceryItemDTO : groceryListFromFile) {
-                
+            groceryListFromFile.forEach((groceryItemDTO) -> {
                 objGroceryList.addGroceryItem(createGroceryItem(groceryItemDTO));
-            }
-        }
+            });
+        }        
     }
 
     /**
@@ -144,7 +145,7 @@ public class GroceryListController {
     public void saveToFile() throws IOException {
         ArrayList<GroceryItemDTO> groceryListDTO = new ArrayList<>();
         populateGroceryListDTO(objGroceryList.getGroceryList(), groceryListDTO);
-        objFileHandler.saveToFile(groceryListDTO);
+        objFileHandler.saveToFile(groceryListDTO);;
     }
 
     private GroceryItem createGroceryItem(GroceryItemDTO objGroceryItemDTO) {

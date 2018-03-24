@@ -30,12 +30,11 @@ public class MenuHandler {
         this.objGroceryListController = objGroceryListController;
     }
 
-    public void processMenu() throws ParseException, IOException {
+    public void processMenu() throws ParseException, IOException, ClassNotFoundException {
         MenuOption objMenu = new MenuOption();
         WelcomeMessage objWelcomeMessage = new WelcomeMessage();
 
         objGroceryListController.readFromFile();
-
         int countRunningLow = getCount("Running Low");
         int countNeedToBuy = getCount("Need to Buy");
 
@@ -68,13 +67,8 @@ public class MenuHandler {
                     break;
                 case 5:
                     showGroceryListByDate();
-                     {
-                        try {
-                            objGroceryListController.saveToFile();
-                        } catch (IOException ex) {
-                            System.out.println();
-                        }
-                    }
+                    objGroceryListController.saveToFile();
+
                     System.out.println("\nHave a nice day !!");
                     //This will Exit the program
                     System.exit(0);

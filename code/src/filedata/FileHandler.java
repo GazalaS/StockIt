@@ -12,25 +12,23 @@ package filedata;
 import integration.GroceryItemDTO;
 import java.util.ArrayList;
 import java.io.*;
-i
-
 
 public class FileHandler {
 
     private static final String GROCERY_LIST_FILE = "grocerylist.txt";
 
     /**
-     * @return @throws java.text.ParseException
      * @throws java.lang.ClassNotFoundException
      * @throws java.io.IOException
      */
     public ArrayList<GroceryItemDTO> readFromFile() throws IOException, ClassNotFoundException {
         FileProcessing<GroceryItemDTO> objFP = new FileProcessing<>();
-        return (ArrayList<GroceryItemDTO>) objFP.readFromFile(GROCERY_LIST_FILE);
+        ArrayList<GroceryItemDTO> objGroceryItemDTOList = objFP.readFromFile(GROCERY_LIST_FILE);
+        return objGroceryItemDTOList;
     }
 
     public void saveToFile(ArrayList<GroceryItemDTO> groceryListDTO) throws IOException {
-        FileProcessing<GroceryItemDTO> objFP = new FileProcessing<>();
-        objFP.savetoFile(GROCERY_LIST_FILE, groceryListDTO);
+        FileProcessing<GroceryItemDTO> objFP = new FileProcessing<>();        
+        objFP.saveToFile(GROCERY_LIST_FILE, groceryListDTO);
     }
 }
