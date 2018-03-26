@@ -3,3 +3,5 @@ code/build/
 code/dist/
 /temp/
 .DS_Store
+grocerylist.txt
+grocerylist.ser

@@ -25,9 +25,12 @@ public class FileProcessor<T extends Serializable> {
     public ArrayList<T> readFromFile(String fileName) throws FileNotFoundException, IOException, ClassNotFoundException {
         ArrayList<T> tList = new ArrayList<>();
         File file = new File(fileName);
-        FileInputStream fileInputStream = new FileInputStream(file);
-        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+        if (!file.exists()) {
+            file.createNewFile();
+        }
         try {
+            FileInputStream fileInputStream = new FileInputStream(file);
+            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
             while (true) {
                 // Read objects
                 T t = (T) objectInputStream.readObject();
@@ -36,9 +39,6 @@ public class FileProcessor<T extends Serializable> {
         } catch (EOFException ex) {
             //All objects are read when control is here
             return tList;
-        } finally {
-            objectInputStream.close();
-            fileInputStream.close();
         }
     }
 
