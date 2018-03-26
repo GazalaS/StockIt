@@ -15,6 +15,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
+import model.ItemCategory;
+import model.ItemStatus;
 
 /**
  *
@@ -52,12 +54,12 @@ public class MenuHandler {
                     printGroceryListByStatus();
                     break;
                 case 2:
-                    objGroceryListController.addItemtoGroceryList(createGroceryItem("add", "Running Low/Need to Buy"));
+                    objGroceryListController.addItemtoGroceryList(createGroceryItem("add", "1.Running Low 2.Need to Buy"));
                     System.out.println("Item Added.");
                     break;
                 case 3:
                     printGroceryList();
-                    objGroceryListController.editItemInGroceryList(createGroceryItem("edit", "Running Low/Need to Buy/Brought"));
+                    objGroceryListController.editItemInGroceryList(createGroceryItem("edit", "1.Running Low 2.Need to Buy 3.Brought"));
                     System.out.println("Item Edited.");
                     break;
                 case 4:
@@ -98,8 +100,8 @@ public class MenuHandler {
         String itemName;
         String quantity;
         Date purchaseByDate = new Date();
-        String category;
-        String status;
+        String category="";
+        String status="";
         int itemIndex = 0;
 
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
@@ -118,10 +120,30 @@ public class MenuHandler {
         } catch (ParseException ex) {
             System.out.println("Please enter date in format (16-March-2018)");
         }
-        System.out.print("Enter Item Category (Edible/Inedible): ");
-        category = reader.nextLine();
+        System.out.print("Enter Item Category (1.Edible 2.Inedible): ");
+
+        switch(reader.nextInt()){
+            case 1: 
+                category = ItemCategory.EDIBLE.toString();
+                break;
+            case 2: category = ItemCategory.INEDIBLE.toString();
+                break;
+        }
+            
         System.out.print("Enter Item Status (" + statusInputMessage + "): ");
-        status = reader.nextLine();
+        switch(reader.nextInt()){
+            case 1: 
+                status = ItemStatus.RUNNING_LOW.toString();
+                break;
+            case 2: 
+                status = ItemStatus.NEED_TO_BUY.toString();
+                break;
+            case 3:
+                status = ItemStatus.BROUGHT.toString();
+                break;
+ 
+        }
+        
         GroceryItemDTO objGroceryItemDTO = new GroceryItemDTO(itemIndex, itemName, quantity, purchaseByDate, category, status);
         return objGroceryItemDTO;
     }
