@@ -9,7 +9,15 @@ package model;
  *
  * @author GazalaS <gazalafshaikh@gmail.com>
  */
-public enum ItemCategory
-{
-    Edible, Inedible
+public enum ItemCategory {
+    EDIBLE("Edible"), INEDIBLE("Inedible");
+    private String category;
+
+    ItemCategory(String category) {
+        this.category = category;
+    }
+
+    public String toString() {
+        return category;
+    }
 }

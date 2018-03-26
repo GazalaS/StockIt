@@ -9,7 +9,15 @@ package model;
  *
  * @author GazalaS <gazalafshaikh@gmail.com>
  */
-public enum ItemStatus
-{
-    RunningLow, NeedToBuy, Brought
+public enum ItemStatus {
+    RUNNING_LOW("Running Low"), NEED_TO_BUY("Need to Buy"), BROUGHT("Brought");
+    private String status;
+
+    ItemStatus(String status) {
+        this.status = status;
+    }
+
+    public String toString() {
+        return status;
+    }
 }
