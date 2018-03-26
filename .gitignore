@@ -1,4 +1,5 @@
 code/nbproject/private/
 code/build/
 code/dist/
-*/DS_Store
+/temp/
+.DS_Store
