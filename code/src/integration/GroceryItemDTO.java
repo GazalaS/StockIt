@@ -5,14 +5,14 @@
  */
 package integration;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 /**
  *
  * @author GazalaS <gazalafshaikh@gmail.com>
  */
-public class GroceryItemDTO {
+public class GroceryItemDTO implements Serializable{
     private int itemIndex ;
     private String itemName;
     private String quantity;
