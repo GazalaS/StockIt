@@ -15,20 +15,20 @@ import java.io.*;
 
 public class FileHandler {
 
-    private static final String GROCERY_LIST_FILE = "grocerylist.txt";
+    private static final String GROCERY_LIST_FILE = "grocerylist.ser";
 
     /**
      * @throws java.lang.ClassNotFoundException
      * @throws java.io.IOException
      */
     public ArrayList<GroceryItemDTO> readFromFile() throws IOException, ClassNotFoundException {
-        FileProcessing<GroceryItemDTO> objFP = new FileProcessing<>();
+        FileProcessor<GroceryItemDTO> objFP = new FileProcessor<>();
         ArrayList<GroceryItemDTO> objGroceryItemDTOList = objFP.readFromFile(GROCERY_LIST_FILE);
         return objGroceryItemDTOList;
     }
 
     public void saveToFile(ArrayList<GroceryItemDTO> groceryListDTO) throws IOException {
-        FileProcessing<GroceryItemDTO> objFP = new FileProcessing<>();        
+        FileProcessor<GroceryItemDTO> objFP = new FileProcessor<>();        
         objFP.saveToFile(GROCERY_LIST_FILE, groceryListDTO);
     }
 }

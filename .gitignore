@@ -1,3 +1,4 @@
-/nbproject/private/
-/build/
-/dist/
+code/nbproject/private/
+code/build/
+code/dist/
+*/DS_Store

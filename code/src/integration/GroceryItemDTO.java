@@ -5,10 +5,9 @@
  */
 package integration;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.io.Serializable;
-
 /**
  *
  * @author GazalaS <gazalafshaikh@gmail.com>

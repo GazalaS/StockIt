@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author GazalaS <gazalafshaikh@gmail.com>
  */
-interface GroceryListInterface<T> {
+interface IGroceryList<T> {
 
     void addGroceryItem(T t);
 

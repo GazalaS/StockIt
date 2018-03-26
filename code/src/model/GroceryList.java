@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
  *
  * @author GazalaS <gazalafshaikh@gmail.com>
  */
-public class GroceryList implements GroceryListInterface<GroceryItem> {
+public class GroceryList implements IGroceryList<GroceryItem> {
 
     ArrayList<GroceryItem> groceryList;
 
