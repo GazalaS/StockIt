@@ -37,8 +37,8 @@ public class MenuHandler {
         WelcomeMessage objWelcomeMessage = new WelcomeMessage();
 
         objGroceryListController.readFromFile();
-        int countRunningLow = getCount("Running Low");
-        int countNeedToBuy = getCount("Need to Buy");
+        int countRunningLow = getCount(ItemStatus.RUNNING_LOW.toString());
+        int countNeedToBuy = getCount(ItemStatus.NEED_TO_BUY.toString());
 
         objWelcomeMessage.printWelcomeMessage(countRunningLow, countNeedToBuy);
 
@@ -48,18 +48,20 @@ public class MenuHandler {
             int choice = reader.nextInt();
             System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
             reader.nextLine();
-
+            String statusInputMessage;
             switch (choice) {
                 case 1:
                     printGroceryListByStatus();
                     break;
                 case 2:
-                    objGroceryListController.addItemtoGroceryList(createGroceryItem("add", "1.Running Low 2.Need to Buy"));
+                    statusInputMessage = "1." + ItemStatus.RUNNING_LOW.toString() + "2." + ItemStatus.NEED_TO_BUY.toString();
+                    objGroceryListController.addItemtoGroceryList(createGroceryItem("add", statusInputMessage));
                     System.out.println("Item Added.");
                     break;
                 case 3:
                     printGroceryList();
-                    objGroceryListController.editItemInGroceryList(createGroceryItem("edit", "1.Running Low 2.Need to Buy 3.Brought"));
+                    statusInputMessage = "1." + ItemStatus.RUNNING_LOW.toString() + "2." + ItemStatus.NEED_TO_BUY.toString() + "3." + ItemStatus.BROUGHT.toString();
+                    objGroceryListController.editItemInGroceryList(createGroceryItem("edit", statusInputMessage));
                     System.out.println("Item Edited.");
                     break;
                 case 4:
@@ -100,8 +102,8 @@ public class MenuHandler {
         String itemName;
         String quantity;
         Date purchaseByDate = new Date();
-        String category="";
-        String status="";
+        String category = "";
+        String status = "";
         int itemIndex = 0;
 
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
@@ -122,28 +124,29 @@ public class MenuHandler {
         }
         System.out.print("Enter Item Category (1.Edible 2.Inedible): ");
 
-        switch(reader.nextInt()){
-            case 1: 
+        switch (reader.nextInt()) {
+            case 1:
                 category = ItemCategory.EDIBLE.toString();
                 break;
-            case 2: category = ItemCategory.INEDIBLE.toString();
+            case 2:
+                category = ItemCategory.INEDIBLE.toString();
                 break;
         }
-            
+
         System.out.print("Enter Item Status (" + statusInputMessage + "): ");
-        switch(reader.nextInt()){
-            case 1: 
+        switch (reader.nextInt()) {
+            case 1:
                 status = ItemStatus.RUNNING_LOW.toString();
                 break;
-            case 2: 
+            case 2:
                 status = ItemStatus.NEED_TO_BUY.toString();
                 break;
             case 3:
                 status = ItemStatus.BROUGHT.toString();
                 break;
- 
+
         }
-        
+
         GroceryItemDTO objGroceryItemDTO = new GroceryItemDTO(itemIndex, itemName, quantity, purchaseByDate, category, status);
         return objGroceryItemDTO;
     }
@@ -158,21 +161,21 @@ public class MenuHandler {
     }
 
     private void printGroceryListByStatus() {
-        boolean isRunningLowEmpty = getGroceryListByStatus("Running Low");
-        boolean isNeedToBuyEmpty = getGroceryListByStatus("Need to Buy");
-        boolean isBroughtEmpty = getGroceryListByStatus("Brought");
+        boolean isRunningLowEmpty = getGroceryListByStatus(ItemStatus.RUNNING_LOW.toString());
+        boolean isNeedToBuyEmpty = getGroceryListByStatus(ItemStatus.NEED_TO_BUY.toString());
+        boolean isBroughtEmpty = getGroceryListByStatus(ItemStatus.BROUGHT.toString());
 
         if (isRunningLowEmpty && isNeedToBuyEmpty && isBroughtEmpty) {
             System.out.println("\nGrocery List is empty. \nPlease select Option 2 to add Items");
         } else {
             if (isRunningLowEmpty) {
-                System.out.println("\nNo Items with status: Running Low.");
+                System.out.println("\nNo Items with status: " + ItemStatus.RUNNING_LOW.toString());
             }
             if (isNeedToBuyEmpty) {
-                System.out.println("\nNo Items with status: Need to Buy.");
+                System.out.println("\nNo Items with status: "  + ItemStatus.NEED_TO_BUY.toString());
             }
             if (isBroughtEmpty) {
-                System.out.println("\nNo Items with status: Brought.");
+                System.out.println("\nNo Items with status: " + ItemStatus.BROUGHT.toString());
             }
         }
     }
@@ -208,15 +211,14 @@ public class MenuHandler {
     private void printMessage(String message) {
         System.out.println("\n" + message + ": ");
     }
-    
-    
-    public String getGroceryItemAllDetails(GroceryItemDTO item){
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");       
-        return (String.format("%-5s",Integer.toString(item.getItemIndex())+ ". " ) + 
-                String.format("%-20s",item.getItemName()) +
-                String.format("%-20s",item.getQuantity()) + 
-                String.format("%-20s",formatter.format(item.getPurchaseByDate())) + 
-                String.format("%-20s",item.getCategory()) + 
-                String.format("%-20s",item.getStatus()) + "\n");
-    } 
+
+    public String getGroceryItemAllDetails(GroceryItemDTO item) {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
+        return (String.format("%-5s", Integer.toString(item.getItemIndex()) + ". ")
+                + String.format("%-20s", item.getItemName())
+                + String.format("%-20s", item.getQuantity())
+                + String.format("%-20s", formatter.format(item.getPurchaseByDate()))
+                + String.format("%-20s", item.getCategory())
+                + String.format("%-20s", item.getStatus()) + "\n");
+    }
 }
