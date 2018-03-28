@@ -127,14 +127,14 @@ public class GroceryListController {
      * @throws java.io.IOException
      * @throws java.lang.ClassNotFoundException
      */
-    public void readFromFile() throws ParseException, IOException, ClassNotFoundException {        
-      ArrayList<GroceryItemDTO> groceryListFromFile = objFileHandler.readFromFile();
-        
+    public void readFromFile() throws ParseException, IOException, ClassNotFoundException {
+        ArrayList<GroceryItemDTO> groceryListFromFile = objFileHandler.readFromFile();
+
         if (!groceryListFromFile.isEmpty()) {
             groceryListFromFile.forEach((groceryItemDTO) -> {
                 objGroceryList.addGroceryItem(createGroceryItem(groceryItemDTO));
             });
-        }        
+        }
     }
 
     /**
