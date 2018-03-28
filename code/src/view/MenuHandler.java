@@ -45,11 +45,12 @@ public class MenuHandler {
 
         while (true) {
             try {
-                //objPrintOutput.printMessage("\nPress Enter for Menu.");
+                //objPrintOutput.printlnMessage("\nPress Enter for Menu.");
                 //reader.nextLine();
                 objPrintOutput.printMenu();
-                int choice = reader.nextInt();
-                objPrintOutput.printMessage("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+                int choice = objUserInput.askChoice(reader);
+                
+                objPrintOutput.printlnMessage("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
                 reader.nextLine();
 
                 String statusInputMessage;
@@ -59,33 +60,33 @@ public class MenuHandler {
                         break;
                     case 2:
                         statusInputMessage = "1." + ItemStatus.RUNNING_LOW.toString() + " 2." + ItemStatus.NEED_TO_BUY.toString();
-                        objGroceryListController.addItemtoGroceryList(createGroceryItemDTO("add", statusInputMessage));
-                        objPrintOutput.printMessage("Item Added.");
+                        objGroceryListController.addItemtoGroceryList(createGroceryItemDTO("Add", statusInputMessage));
+                        objPrintOutput.printlnMessage("Item Added.");
                         break;
                     case 3:
                         statusInputMessage = "1." + ItemStatus.RUNNING_LOW.toString() + " 2." + ItemStatus.NEED_TO_BUY.toString() + " 3." + ItemStatus.BROUGHT.toString();
-                        objGroceryListController.editItemInGroceryList(createGroceryItemDTO("edit", statusInputMessage));
-                        objPrintOutput.printMessage("Item Edited.");
+                        objGroceryListController.editItemInGroceryList(createGroceryItemDTO("Edit", statusInputMessage));
+                        objPrintOutput.printlnMessage("Item Edited.");
                         break;
                     case 4:
-                        objGroceryListController.removeItemFromGroceryList(removeItemFromGroceryList());
-                        objPrintOutput.printMessage("Item Removed.");
+                        objGroceryListController.removeItemFromGroceryList(getItemIndex("Remove"));
+                        objPrintOutput.printlnMessage("Item Removed.");
                         break;
                     case 5:
                         objListView.showGroceryListByDate();
                         break;
                     case 6:
                         objGroceryListController.saveToFile();
-                        objPrintOutput.printMessage("Have a nice day !!\n");
+                        objPrintOutput.printlnMessage("Have a nice day !!\n");
                         //This will Exit the program
                         System.exit(0);
                         break;
                     default:
-                        objPrintOutput.printMessage("Wrong Choice. Pick option 1-5.");
+                        objPrintOutput.printlnMessage("Wrong Choice. Pick option 1-5.");
                         break;
                 }
             } catch (EmptyListException ex) {
-                objPrintOutput.printMessage(ex.getMessage());
+                objPrintOutput.printlnMessage(ex.getMessage());
             }
         }
     }
@@ -98,28 +99,10 @@ public class MenuHandler {
         return 0;
     }
 
-    private int removeItemFromGroceryList() throws EmptyListException {
-        int itemIndex = 0;
-        int numberOfItems = objGroceryListController.getGroceryList().size();
-        if (numberOfItems > 0) {
-            objListView.showGroceryList();
-            itemIndex = objUserInput.askItemIndexToRemove(reader, numberOfItems);
-        } else {
-            throw new EmptyListException("No Items to Remove.\nPlease select Option 2 to Add Items");
-        }
-        return itemIndex;
-    }
-
     private GroceryItemDTO createGroceryItemDTO(String operation, String statusInputMessage) throws ParseException, EmptyListException {
         int itemIndex = 0;
-        if (operation.equals("edit")) {
-            int numberOfItems = objGroceryListController.getGroceryList().size();
-            if (numberOfItems > 0) {
-                objListView.showGroceryList();
-                itemIndex = objUserInput.askItemIndexToEdit(reader, numberOfItems);
-            } else {
-                throw new EmptyListException("No Items to Edit.\nPlease select Option 2 to Add Items");
-            }
+        if (operation.equals("Edit")) {
+            itemIndex = getItemIndex(operation);
         }
 
         String itemName;
@@ -137,5 +120,17 @@ public class MenuHandler {
 
         GroceryItemDTO objGroceryItemDTO = new GroceryItemDTO(itemIndex, itemName, quantity, purchaseByDate, category, status);
         return objGroceryItemDTO;
+    }
+
+    private int getItemIndex(String operation) throws EmptyListException {
+        int itemIndex = 0;
+        int numberOfItems = objGroceryListController.getGroceryList().size();
+        if (numberOfItems > 0) {
+            objListView.showGroceryList();
+            itemIndex = objUserInput.askItemIndex(reader, numberOfItems, operation);
+        } else {
+            throw new EmptyListException("No Items to " + operation + ".\nPlease select Option 2 to Add Items.");
+        }
+        return itemIndex;
     }
 }

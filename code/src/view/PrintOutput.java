@@ -38,10 +38,13 @@ public class PrintOutput {
         System.out.print(">> ");     // print prompt
     }
 
-    public void printMessage(String message) {
+    public void printlnMessage(String message) {
         System.out.println(message);
     }
-
+    
+    public void printMessage(String message) {
+        System.out.print(message);
+    }
     public void printList(ArrayList<GroceryItemDTO> groceryListDTO, String operation) {
         groceryListDTO.stream()
                 .forEach((item) -> {

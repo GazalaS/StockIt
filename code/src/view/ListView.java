@@ -32,7 +32,7 @@ public class ListView {
         if (!groceryListDTO.isEmpty()) {
             objPrintOutput.printList(groceryListDTO, "listAll");
         } else {
-            throw new EmptyListException("\nGrocery List is empty.\nPlease select Option 2 to Add Items");
+            throw new EmptyListException("Grocery List is empty.\nPlease select Option 2 to Add Items.");
         }
     }
 
@@ -46,24 +46,24 @@ public class ListView {
         boolean isListBroughtEmpty = listBroughtItems.isEmpty();
 
         if (isListRunningLowEmpty && isListNeedToBuyEmpty && isListBroughtEmpty) {
-            throw new EmptyListException("\nGrocery List is empty.\nPlease select Option 2 to Add Items");
+            throw new EmptyListException("Grocery List is empty.\nPlease select Option 2 to Add Items.");
         } else {
             if (isListRunningLowEmpty) {
-                objPrintOutput.printMessage("\nNo Items with status: " + ItemStatus.RUNNING_LOW.toString());
+                objPrintOutput.printlnMessage("\nNo Items with status: " + ItemStatus.RUNNING_LOW.toString());
             } else {
-                objPrintOutput.printMessage("\n" + ItemStatus.RUNNING_LOW.toString() + " :");
+                objPrintOutput.printlnMessage("\n" + ItemStatus.RUNNING_LOW.toString() + " :");
                 objPrintOutput.printList(listRunningLowItems, "listByStatus");
             }
             if (isListNeedToBuyEmpty) {
-                objPrintOutput.printMessage("\nNo Items with status: " + ItemStatus.NEED_TO_BUY.toString());
+                objPrintOutput.printlnMessage("\nNo Items with status: " + ItemStatus.NEED_TO_BUY.toString());
             } else {
-                objPrintOutput.printMessage("\n" + ItemStatus.NEED_TO_BUY.toString() + " :");
+                objPrintOutput.printlnMessage("\n" + ItemStatus.NEED_TO_BUY.toString() + " :");
                 objPrintOutput.printList(listNeedToBuyItems, "listByStatus");
             }
             if (isListBroughtEmpty) {
-                objPrintOutput.printMessage("\nNo Items with status: " + ItemStatus.BROUGHT.toString());
+                objPrintOutput.printlnMessage("\nNo Items with status: " + ItemStatus.BROUGHT.toString());
             } else {
-                objPrintOutput.printMessage("\n" + ItemStatus.BROUGHT.toString() + " :");
+                objPrintOutput.printlnMessage("\n" + ItemStatus.BROUGHT.toString() + " :");
                 objPrintOutput.printList(listBroughtItems, "listByStatus");
             }
         }
@@ -80,10 +80,10 @@ public class ListView {
         String strTodaysDate = formatter.format(localDate);
         ArrayList<GroceryItemDTO> groceryListByDateDTO = objGroceryListController.getGroceryListByDate(strTodaysDate);
         if (!groceryListByDateDTO.isEmpty()) {
-            objPrintOutput.printMessage("List for Today: " + strTodaysDate);
+            objPrintOutput.printlnMessage("List for Today: " + strTodaysDate);
             objPrintOutput.printList(groceryListByDateDTO, "listByDate");
         } else {
-            throw new EmptyListException("No items with Purchase by Date " + strTodaysDate + ".\n" + "Please select Option 2 to Add Items");
+            throw new EmptyListException("No items with Purchase by Date " + strTodaysDate + ".\n" + "Please select Option 2 to Add Items.");
         }
     }
 }

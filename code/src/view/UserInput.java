@@ -22,7 +22,35 @@ public class UserInput {
     public UserInput() {
         objPrintOutput = new PrintOutput();
     }
-
+    
+    public int askChoice(Scanner reader){
+        int choice = 0;
+        boolean validChoice= false;
+        do {
+            if (reader.hasNextInt()) {
+                choice = reader.nextInt();
+                validChoice = isValidChoice(choice);
+            } else {
+                objPrintOutput.printlnMessage("Choose option between 1-6");
+                objPrintOutput.printlnMessage("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                objPrintOutput.printMessage(">>");
+                reader.next();
+                validChoice = false;
+            }
+        } while (!validChoice);
+        return choice;
+    }
+    
+    private boolean isValidChoice(int choice){
+        if (choice < 0) {
+            objPrintOutput.printlnMessage("Choose option between 1-6");
+            objPrintOutput.printlnMessage("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+            objPrintOutput.printMessage(">>");
+            return false;
+        }
+        return true;
+    }
+    
     public String askItemName(Scanner reader) {
         String itemName = "";
         boolean validItemName = false;
@@ -38,10 +66,10 @@ public class UserInput {
 
     private boolean isValidItemName(String itemName) {
         if (itemName == null || itemName.trim().isEmpty()) {
-            objPrintOutput.printMessage("Item Name cannot be empty. Please enter Item Name.");
+            objPrintOutput.printlnMessage("Item Name cannot be empty. Please enter Item Name.");
             return false;
         } else if (!itemName.matches("[a-zA-Z]+ *[a-zA-Z]*")) {
-            objPrintOutput.printMessage("Item Name can only contain Alphabets");
+            objPrintOutput.printlnMessage("Item Name can only contain Alphabets");
             return false;
         }
         return true;
@@ -62,10 +90,10 @@ public class UserInput {
 
     private boolean isValidQuantity(String quantity) {
         if (quantity == null || quantity.trim().isEmpty()) {
-            objPrintOutput.printMessage("Item Quantity cannot be empty. Please enter Item Quantity.");
+            objPrintOutput.printlnMessage("Item Quantity cannot be empty. Please enter Item Quantity.");
             return false;
         } else if (!quantity.matches("[1-9][0-9]* *[A-Za-z]*")) {
-            objPrintOutput.printMessage("Item Quantity must have digit.");
+            objPrintOutput.printlnMessage("Item Quantity must have digit.");
             return false;
         }
         return true;
@@ -90,34 +118,34 @@ public class UserInput {
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
         String strTodaysDate = formatter.format(localDate);
         if (purchaseByDate == null || purchaseByDate.trim().isEmpty()) {
-            objPrintOutput.printMessage("Purchase By Date cannot be empty. Please enter Purchase By Date.");
+            objPrintOutput.printlnMessage("Purchase By Date cannot be empty. Please enter Purchase By Date.");
             return false;
         } else if (!dateValidator.validate(purchaseByDate)) {
-            objPrintOutput.printMessage("Invalid Date. Purchase By Date Format dd-mm-yyyy");
+            objPrintOutput.printlnMessage("Invalid Date. Purchase By Date Format dd-mm-yyyy");
             return false;
         } else if ((purchaseByDate.compareTo(strTodaysDate) < 0)) {
-            objPrintOutput.printMessage("Purchase By Date can not be a past Date");
+            objPrintOutput.printlnMessage("Purchase By Date can not be a past Date");
             return false;
         }
         return true;
     }
 
-    public int askItemIndexToEdit(Scanner reader, int numberOfItems) {
-        int itemIndexToEdit = 0;
+    public int askItemIndex(Scanner reader, int numberOfItems, String operation) {
+        int itemIndex = 0;
         boolean validItemIndex = false;
         do {
-            objPrintOutput.printMessage("Enter Item Number to Edit: ");
+            objPrintOutput.printMessage("Enter Item Number to " + operation + " : ");
             if (reader.hasNextInt()) {
-                itemIndexToEdit = reader.nextInt();
-                validItemIndex = isValidItemIndex(itemIndexToEdit, numberOfItems);
+                itemIndex = reader.nextInt();
+                validItemIndex = isValidItemIndex(itemIndex, numberOfItems);
             } else {
-                objPrintOutput.printMessage("Item Number must be a digit");
+                objPrintOutput.printlnMessage("Item Number must be a digit");
                 reader.next();
                 validItemIndex = false;
             }
         } while (!validItemIndex);
         reader.nextLine();
-        return itemIndexToEdit;
+        return itemIndex;
     }
 
     private boolean isValidItemIndex(int itemIndex, int numberOfItems) {
@@ -127,10 +155,10 @@ public class UserInput {
         }
         if (itemIndex > numberOfItems) {
             if (numberOfItems > 1) {
-                objPrintOutput.printMessage("Please Enter Item Number between 1 to " + numberOfItems);
+                objPrintOutput.printlnMessage("Please Enter Item Number between 1 to " + numberOfItems);
                 return false;
             } else {
-                objPrintOutput.printMessage("Please Enter Item Number as " + numberOfItems);
+                objPrintOutput.printlnMessage("Please Enter Item Number as " + numberOfItems);
                 return false;
             }
         }
@@ -197,23 +225,5 @@ public class UserInput {
             }
         } while (!validItemStatus);
         return itemStatus;
-    }
-
-    public int askItemIndexToRemove(Scanner reader, int numberOfItems) {
-        int itemIndexToRemove = 0;
-        boolean validItemIndex = false;
-        do {
-            objPrintOutput.printMessage("Enter Item Number to Remove: ");
-            if (reader.hasNextInt()) {
-                itemIndexToRemove = reader.nextInt();
-                validItemIndex = isValidItemIndex(itemIndexToRemove, numberOfItems);
-            } else {
-                objPrintOutput.printMessage("Item Number must be a digit");
-                reader.next();
-                validItemIndex = false;
-            }
-        } while (!validItemIndex);
-        reader.nextLine();
-        return itemIndexToRemove;
     }
 }
