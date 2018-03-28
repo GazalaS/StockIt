@@ -20,7 +20,6 @@ import integration.ItemStatus;
  * @author GazalaS <gazalafshaikh@gmail.com>
  */
 public class MenuHandler {
-
     private Scanner reader;
     private GroceryListController objGroceryListController;
     private PrintOutput objPrintOutput;

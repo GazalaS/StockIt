@@ -149,8 +149,8 @@ public class UserInput {
     }
 
     private boolean isValidItemIndex(int itemIndex, int numberOfItems) {
-        if (itemIndex < 0) {
-            objPrintOutput.printMessage("Item Number can not be negative");
+        if (itemIndex <= 0) {
+            objPrintOutput.printlnMessage("Item Number can not be zero or negative value");
             return false;
         }
         if (itemIndex > numberOfItems) {
