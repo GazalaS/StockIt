@@ -19,6 +19,7 @@ import java.util.ArrayList;
 /**
  *
  * @author "GazalaS <gazalafshaikh@gmail.com>"
+ * @param <T>
  */
 public class FileProcessor<T extends Serializable> {
 

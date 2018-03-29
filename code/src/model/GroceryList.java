@@ -55,22 +55,18 @@ public class GroceryList implements IGroceryList<GroceryItem> {
      *
      * @param strTodaysDate
      * @return
+     * @throws java.text.ParseException
      */
     @Override
-    public ArrayList<GroceryItem> getGroceryListByDate(String strTodaysDate) {
-        try {
-            SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
-            Date todaysDate = formatter.parse(strTodaysDate);
+    public ArrayList<GroceryItem> getGroceryListByDate(String strTodaysDate) throws ParseException {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        Date todaysDate = formatter.parse(strTodaysDate);
 
-            return groceryList.stream()
-                    .filter((GroceryItem item) -> {
-                        return todaysDate.compareTo(item.getPurchaseByDate()) == 0;
-                    })
-                    .sorted((a, b) -> a.getStatus().compareTo(b.getStatus()))
-                    .collect(Collectors.toCollection(ArrayList::new));
-        } catch (ParseException ex) {
-            System.out.println("Invalid Date Format");
-        }
-        return null;
+        return groceryList.stream()
+                .filter((GroceryItem item) -> {
+                    return todaysDate.compareTo(item.getPurchaseByDate()) == 0;
+                })
+                .sorted((a, b) -> a.getStatus().compareTo(b.getStatus()))
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 }

@@ -5,6 +5,7 @@
  */
 package model;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 
 /**
@@ -15,13 +16,13 @@ interface IGroceryList<T> {
 
     void addGroceryItem(T t);
 
-    void editGroceryItem(int itemIndex,T t);
+    void editGroceryItem(int itemIndex, T t);
 
     void removeGroceryItem(int itemIndex);
-    
+
     ArrayList<T> getGroceryList();
 
     ArrayList<T> getGroceryListByStatus(String status);
 
-    ArrayList<T> getGroceryListByDate(String strTodaysDate);
+    ArrayList<T> getGroceryListByDate(String strTodaysDate) throws ParseException;
 }

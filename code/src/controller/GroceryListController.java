@@ -21,8 +21,8 @@ import model.GroceryItem;
  */
 public class GroceryListController {
 
-    private GroceryList objGroceryList;
-    private FileHandler objFileHandler;
+    private final GroceryList objGroceryList;
+    private final FileHandler objFileHandler;
 
     /**
      * Instantiates a new Controller and creates: <code>{@Link}Grocery List
@@ -42,6 +42,20 @@ public class GroceryListController {
         objGroceryList.addGroceryItem(createGroceryItem(objGroceryItemDTO));
     }
 
+    private GroceryItem createGroceryItem(GroceryItemDTO objGroceryItemDTO) {
+        GroceryItem groceryItem = new GroceryItem();
+        groceryItem = populateGroceryItem(groceryItem, objGroceryItemDTO);
+        return groceryItem;
+    }
+
+    private GroceryItem populateGroceryItem(GroceryItem groceryItem, GroceryItemDTO objGroceryItemDTO) {
+        groceryItem.setItemName(objGroceryItemDTO.getItemName());
+        groceryItem.setQuantity(objGroceryItemDTO.getQuantity());
+        groceryItem.setPurchaseByDate(objGroceryItemDTO.getPurchaseByDate());
+        groceryItem.setCategory(objGroceryItemDTO.getCategory());
+        groceryItem.setStatus(objGroceryItemDTO.getStatus());
+        return groceryItem;
+    }
     /**
      * Passes DTO object to Model to edit a Grocery Item to the Grocery List.
      *
@@ -127,14 +141,14 @@ public class GroceryListController {
      * @throws java.io.IOException
      * @throws java.lang.ClassNotFoundException
      */
-    public void readFromFile() throws ParseException, IOException, ClassNotFoundException {        
-      ArrayList<GroceryItemDTO> groceryListFromFile = objFileHandler.readFromFile();
-        
+    public void readFromFile() throws ParseException, IOException, ClassNotFoundException {
+        ArrayList<GroceryItemDTO> groceryListFromFile = objFileHandler.readFromFile();
+
         if (!groceryListFromFile.isEmpty()) {
             groceryListFromFile.forEach((groceryItemDTO) -> {
                 objGroceryList.addGroceryItem(createGroceryItem(groceryItemDTO));
             });
-        }        
+        }
     }
 
     /**
@@ -146,20 +160,5 @@ public class GroceryListController {
         ArrayList<GroceryItemDTO> groceryListDTO = new ArrayList<>();
         populateGroceryListDTO(objGroceryList.getGroceryList(), groceryListDTO);
         objFileHandler.saveToFile(groceryListDTO);;
-    }
-
-    private GroceryItem createGroceryItem(GroceryItemDTO objGroceryItemDTO) {
-        GroceryItem groceryItem = new GroceryItem();
-        groceryItem = populateGroceryItem(groceryItem, objGroceryItemDTO);
-        return groceryItem;
-    }
-
-    private GroceryItem populateGroceryItem(GroceryItem groceryItem, GroceryItemDTO objGroceryItemDTO) {
-        groceryItem.setItemName(objGroceryItemDTO.getItemName());
-        groceryItem.setQuantity(objGroceryItemDTO.getQuantity());
-        groceryItem.setPurchaseByDate(objGroceryItemDTO.getPurchaseByDate());
-        groceryItem.setCategory(objGroceryItemDTO.getCategory());
-        groceryItem.setStatus(objGroceryItemDTO.getStatus());
-        return groceryItem;
     }
 }

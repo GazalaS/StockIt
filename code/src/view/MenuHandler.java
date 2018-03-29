@@ -11,75 +11,79 @@ import controller.GroceryListController;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
-import model.ItemCategory;
-import model.ItemStatus;
+import integration.ItemStatus;
 
 /**
  *
  * @author GazalaS <gazalafshaikh@gmail.com>
  */
 public class MenuHandler {
-
-    private Scanner reader;
-    private GroceryListController objGroceryListController;
+    private final Scanner reader;
+    private final GroceryListController objGroceryListController;
+    private final PrintOutput objPrintOutput;
+    private final UserInput objUserInput;
+    private final ListView objListView;
 
     public MenuHandler(GroceryListController objGroceryListController) {
         reader = new Scanner(System.in);
         this.objGroceryListController = objGroceryListController;
+        objPrintOutput = new PrintOutput();
+        objUserInput = new UserInput(reader);
+        objListView = new ListView(objGroceryListController);
     }
 
     public void processMenu() throws ParseException, IOException, ClassNotFoundException {
-        MenuOption objMenu = new MenuOption();
-        WelcomeMessage objWelcomeMessage = new WelcomeMessage();
-
         objGroceryListController.readFromFile();
+
         int countRunningLow = getCount(ItemStatus.RUNNING_LOW.toString());
         int countNeedToBuy = getCount(ItemStatus.NEED_TO_BUY.toString());
 
-        objWelcomeMessage.printWelcomeMessage(countRunningLow, countNeedToBuy);
+        objPrintOutput.printWelcomeMessage(countRunningLow, countNeedToBuy);
 
         while (true) {
+            try {
+                objPrintOutput.printMenu();
+                int choice = objUserInput.askChoice();
+                
+                objPrintOutput.printlnMessage("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+                reader.nextLine();
 
-            objMenu.printMenu();
-            int choice = reader.nextInt();
-            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-            reader.nextLine();
-            String statusInputMessage;
-            switch (choice) {
-                case 1:
-                    printGroceryListByStatus();
-                    break;
-                case 2:
-                    statusInputMessage = "1." + ItemStatus.RUNNING_LOW.toString() + "2." + ItemStatus.NEED_TO_BUY.toString();
-                    objGroceryListController.addItemtoGroceryList(createGroceryItem("add", statusInputMessage));
-                    System.out.println("Item Added.");
-                    break;
-                case 3:
-                    printGroceryList();
-                    statusInputMessage = "1." + ItemStatus.RUNNING_LOW.toString() + "2." + ItemStatus.NEED_TO_BUY.toString() + "3." + ItemStatus.BROUGHT.toString();
-                    objGroceryListController.editItemInGroceryList(createGroceryItem("edit", statusInputMessage));
-                    System.out.println("Item Edited.");
-                    break;
-                case 4:
-                    printGroceryList();
-                    objGroceryListController.removeItemFromGroceryList(removeItemFromGroceryList());
-                    System.out.println("Item Removed.");
-                    break;
-                case 5:
-                    printGroceryListByDate();
-                    objGroceryListController.saveToFile();
-
-                    System.out.println("\nHave a nice day !!");
-                    //This will Exit the program
-                    System.exit(0);
-                    break;
-                default:
-                    System.out.println("Wrong Choice. Pick option 1-5.");
-                    break;
+                String statusInputMessage;
+                switch (choice) {
+                    case 1:
+                        objListView.showGroceryListByStatus();
+                        break;
+                    case 2:
+                        statusInputMessage = "1." + ItemStatus.RUNNING_LOW.toString() + " 2." + ItemStatus.NEED_TO_BUY.toString();
+                        objGroceryListController.addItemtoGroceryList(createGroceryItemDTO("Add", statusInputMessage));
+                        objPrintOutput.printlnMessage("Item Added.");
+                        break;
+                    case 3:
+                        statusInputMessage = "1." + ItemStatus.RUNNING_LOW.toString() + " 2." + ItemStatus.NEED_TO_BUY.toString() + " 3." + ItemStatus.BROUGHT.toString();
+                        objGroceryListController.editItemInGroceryList(createGroceryItemDTO("Edit", statusInputMessage));
+                        objPrintOutput.printlnMessage("Item Edited.");
+                        break;
+                    case 4:
+                        objGroceryListController.removeItemFromGroceryList(getItemIndex("Remove"));
+                        objPrintOutput.printlnMessage("Item Removed.");
+                        break;
+                    case 5:
+                        objListView.showGroceryListByDate();
+                        break;
+                    case 6:
+                        objGroceryListController.saveToFile();
+                        objPrintOutput.printlnMessage("Have a nice day !!\n");
+                        //This will Exit the program
+                        System.exit(0);
+                        break;
+                    default:
+                        objPrintOutput.printlnMessage("Wrong Choice. Pick option 1-5.");
+                        break;
+                }
+            } catch (EmptyListException ex) {
+                objPrintOutput.printlnMessage(ex.getMessage());
             }
         }
     }
@@ -92,133 +96,38 @@ public class MenuHandler {
         return 0;
     }
 
-    private int removeItemFromGroceryList() {
-        System.out.print("\nEnter Item Number to Remove: ");
-        int itemIndex = reader.nextInt();
-        return itemIndex;
-    }
+    private GroceryItemDTO createGroceryItemDTO(String operation, String statusInputMessage) throws ParseException, EmptyListException {
+        int itemIndex = 0;
+        if (operation.equals("Edit")) {
+            itemIndex = getItemIndex(operation);
+        }
 
-    private GroceryItemDTO createGroceryItem(String operation, String statusInputMessage) {
         String itemName;
         String quantity;
-        Date purchaseByDate = new Date();
-        String category = "";
-        String status = "";
-        int itemIndex = 0;
+        Date purchaseByDate;
+        String category;
+        String status;
 
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
-        if (operation.equals("edit")) {
-            System.out.print("\nEnter Item Number to Edit: ");
-            itemIndex = reader.nextInt();
-            reader.nextLine();
-        }
-        System.out.print("\nEnter Item Name: ");
-        itemName = reader.nextLine();
-        System.out.print("Enter Item Quantity: ");
-        quantity = reader.nextLine();
-        System.out.print("Enter Purchase By Date(dd-MMM-yyyy): ");
-        try {
-            purchaseByDate = formatter.parse(reader.nextLine());
-        } catch (ParseException ex) {
-            System.out.println("Please enter date in format (16-March-2018)");
-        }
-        System.out.print("Enter Item Category (1.Edible 2.Inedible): ");
-
-        switch (reader.nextInt()) {
-            case 1:
-                category = ItemCategory.EDIBLE.toString();
-                break;
-            case 2:
-                category = ItemCategory.INEDIBLE.toString();
-                break;
-        }
-
-        System.out.print("Enter Item Status (" + statusInputMessage + "): ");
-        switch (reader.nextInt()) {
-            case 1:
-                status = ItemStatus.RUNNING_LOW.toString();
-                break;
-            case 2:
-                status = ItemStatus.NEED_TO_BUY.toString();
-                break;
-            case 3:
-                status = ItemStatus.BROUGHT.toString();
-                break;
-
-        }
+        itemName = objUserInput.askItemName();
+        quantity = objUserInput.askItemQuantity();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        purchaseByDate = formatter.parse(objUserInput.askPurchaseByDate());
+        category = objUserInput.askItemCategory();
+        status = objUserInput.askItemStatus(statusInputMessage);
 
         GroceryItemDTO objGroceryItemDTO = new GroceryItemDTO(itemIndex, itemName, quantity, purchaseByDate, category, status);
         return objGroceryItemDTO;
     }
 
-    private void printGroceryList() {
-        ArrayList<GroceryItemDTO> groceryListByStatusDTO = objGroceryListController.getGroceryList();
-        groceryListByStatusDTO.stream()
-                .forEach((item) -> {
-                    System.out.printf(getGroceryItemAllDetails(item));
-                });
-
-    }
-
-    private void printGroceryListByStatus() {
-        boolean isRunningLowEmpty = getGroceryListByStatus(ItemStatus.RUNNING_LOW.toString());
-        boolean isNeedToBuyEmpty = getGroceryListByStatus(ItemStatus.NEED_TO_BUY.toString());
-        boolean isBroughtEmpty = getGroceryListByStatus(ItemStatus.BROUGHT.toString());
-
-        if (isRunningLowEmpty && isNeedToBuyEmpty && isBroughtEmpty) {
-            System.out.println("\nGrocery List is empty. \nPlease select Option 2 to add Items");
+    private int getItemIndex(String operation) throws EmptyListException {
+        int itemIndex = 0;
+        int numberOfItems = objGroceryListController.getGroceryList().size();
+        if (numberOfItems > 0) {
+            objListView.showGroceryList();
+            itemIndex = objUserInput.askItemIndex(numberOfItems, operation);
         } else {
-            if (isRunningLowEmpty) {
-                System.out.println("\nNo Items with status: " + ItemStatus.RUNNING_LOW.toString());
-            }
-            if (isNeedToBuyEmpty) {
-                System.out.println("\nNo Items with status: "  + ItemStatus.NEED_TO_BUY.toString());
-            }
-            if (isBroughtEmpty) {
-                System.out.println("\nNo Items with status: " + ItemStatus.BROUGHT.toString());
-            }
+            throw new EmptyListException("No Items to " + operation + ".\nPlease select Option 2 to Add Items.");
         }
-    }
-
-    private boolean getGroceryListByStatus(String status) {
-        boolean isGroceryListEmpty = true;
-        ArrayList<GroceryItemDTO> groceryListByStatusDTO = objGroceryListController.getGroceryListByStatus(status);
-
-        if (!groceryListByStatusDTO.isEmpty()) {
-            printMessage(status);
-            groceryListByStatusDTO.stream()
-                    .forEach((item) -> {
-                        System.out.printf(item.getGroceryItemNoStatus());
-                    });
-            isGroceryListEmpty = false;
-        }
-        return isGroceryListEmpty;
-    }
-
-    private void printGroceryListByDate() throws ParseException {
-        LocalDate localDate = LocalDate.now();
-        String strTodaysDate = DateTimeFormatter.ofPattern("dd-MMM-yyyy").format(localDate);
-        ArrayList<GroceryItemDTO> groceryListByDateDTO = objGroceryListController.getGroceryListByDate(strTodaysDate);
-        if (!groceryListByDateDTO.isEmpty()) {
-            printMessage("List for Today: " + strTodaysDate);
-            groceryListByDateDTO.stream()
-                    .forEach((item) -> {
-                        System.out.printf(item.getGroceryItemBriefDetails());
-                    });
-        }
-    }
-
-    private void printMessage(String message) {
-        System.out.println("\n" + message + ": ");
-    }
-
-    public String getGroceryItemAllDetails(GroceryItemDTO item) {
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
-        return (String.format("%-5s", Integer.toString(item.getItemIndex()) + ". ")
-                + String.format("%-20s", item.getItemName())
-                + String.format("%-20s", item.getQuantity())
-                + String.format("%-20s", formatter.format(item.getPurchaseByDate()))
-                + String.format("%-20s", item.getCategory())
-                + String.format("%-20s", item.getStatus()) + "\n");
+        return itemIndex;
     }
 }

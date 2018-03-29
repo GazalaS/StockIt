@@ -3,21 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model;
+package integration;
 
 /**
  *
  * @author GazalaS <gazalafshaikh@gmail.com>
  */
-public enum ItemStatus {
-    RUNNING_LOW("Running Low"), NEED_TO_BUY("Need to Buy"), BROUGHT("Brought");
-    private String status;
+public enum ItemCategory {
+    EDIBLE("Edible"), INEDIBLE("Inedible");
+    private final String category;
 
-    ItemStatus(String status) {
-        this.status = status;
+    ItemCategory(String category) {
+        this.category = category;
     }
 
+    @Override
     public String toString() {
-        return status;
+        return category;
     }
 }

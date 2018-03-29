@@ -12,49 +12,50 @@ import java.util.Date;
  * @author GazalaS <gazalafshaikh@gmail.com>
  */
 public class GroceryItem {
+
     private String itemName;
     private String quantity;
     private Date purchaseByDate;
     private String category;
     private String status;
-    
-    public String getItemName(){
+
+    public String getItemName() {
         return itemName;
     }
 
-    public Date getPurchaseByDate(){
+    public Date getPurchaseByDate() {
         return purchaseByDate;
     }
-    
-    public String getQuantity(){
+
+    public String getQuantity() {
         return quantity;
     }
-    
-    public String getCategory(){
+
+    public String getCategory() {
         return category;
     }
-    
-    public String getStatus(){
+
+    public String getStatus() {
         return status;
     }
-        
-    public void setItemName(String itemName){
+
+    public void setItemName(String itemName) {
         this.itemName = itemName;
     }
-    
-    public void setPurchaseByDate(Date purchaseByDate){
+
+    public void setPurchaseByDate(Date purchaseByDate) {
         this.purchaseByDate = purchaseByDate;
     }
-    
-    public void setQuantity(String quantity){
+
+    public void setQuantity(String quantity) {
         this.quantity = quantity;
     }
-    
-    public void setCategory(String category){
-        this.category = category; 
+
+    public void setCategory(String category) {
+        this.category = category;
     }
-    
-    public void setStatus(String status){
+
+    public void setStatus(String status) {
         this.status = status;
     }
 }
