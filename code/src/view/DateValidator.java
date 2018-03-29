@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
  */
 public class DateValidator {
 
-    private Pattern pattern;
+    private final Pattern pattern;
     private Matcher matcher;
 
     private static final String DATE_PATTERN

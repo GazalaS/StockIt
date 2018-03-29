@@ -17,15 +17,17 @@ import integration.ItemStatus;
  */
 public class UserInput {
 
-    private PrintOutput objPrintOutput;
+    private final PrintOutput objPrintOutput;
+    private final Scanner reader;
 
-    public UserInput() {
+    public UserInput(Scanner reader) {
         objPrintOutput = new PrintOutput();
+        this.reader = reader;
     }
-    
-    public int askChoice(Scanner reader){
+
+    public int askChoice() {
         int choice = 0;
-        boolean validChoice= false;
+        boolean validChoice = false;
         do {
             if (reader.hasNextInt()) {
                 choice = reader.nextInt();
@@ -40,8 +42,8 @@ public class UserInput {
         } while (!validChoice);
         return choice;
     }
-    
-    private boolean isValidChoice(int choice){
+
+    private boolean isValidChoice(int choice) {
         if (choice < 0) {
             objPrintOutput.printlnMessage("Choose option between 1-6");
             objPrintOutput.printlnMessage("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
@@ -50,8 +52,8 @@ public class UserInput {
         }
         return true;
     }
-    
-    public String askItemName(Scanner reader) {
+
+    public String askItemName() {
         String itemName = "";
         boolean validItemName = false;
         do {
@@ -68,14 +70,14 @@ public class UserInput {
         if (itemName == null || itemName.trim().isEmpty()) {
             objPrintOutput.printlnMessage("Item Name cannot be empty. Please enter Item Name.");
             return false;
-        } else if (!itemName.matches("[a-zA-Z]+ *[a-zA-Z]*")) {
-            objPrintOutput.printlnMessage("Item Name can only contain Alphabets");
+        } else if (!itemName.matches("^[ A-Za-z]+$")) {
+            objPrintOutput.printlnMessage("Item Name can contain only Alphabets");
             return false;
         }
         return true;
     }
 
-    public String askItemQuantity(Scanner reader) {
+    public String askItemQuantity() {
         String quantity = "";
         boolean validQuantity = false;
         do {
@@ -99,7 +101,7 @@ public class UserInput {
         return true;
     }
 
-    public String askPurchaseByDate(Scanner reader) {
+    public String askPurchaseByDate() {
         String purchaseByDate = "";
         boolean validPurchaseByDate = false;
         do {
@@ -130,7 +132,70 @@ public class UserInput {
         return true;
     }
 
-    public int askItemIndex(Scanner reader, int numberOfItems, String operation) {
+    public String askItemCategory() {
+        String itemCategory = "";
+        boolean validItemCategory = false;
+        do {
+            objPrintOutput.printMessage("Enter Item Category (1." + ItemCategory.EDIBLE.toString() + " 2." + ItemCategory.INEDIBLE.toString() + "): ");
+            if (reader.hasNextInt()) {
+                switch (reader.nextInt()) {
+                    case 1:
+                        itemCategory = ItemCategory.EDIBLE.toString();
+                        validItemCategory = true;
+                        break;
+                    case 2:
+                        itemCategory = ItemCategory.INEDIBLE.toString();
+                        validItemCategory = true;
+                        break;
+                    default:
+                        objPrintOutput.printMessage("Please select 1." + ItemCategory.EDIBLE.toString() + " 2." + ItemCategory.INEDIBLE.toString() + "): ");
+                        reader.next();
+                        validItemCategory = false;
+                        break;
+                }
+            } else {
+                objPrintOutput.printMessage("Please select 1." + ItemCategory.EDIBLE.toString() + " 2." + ItemCategory.INEDIBLE.toString() + "): ");
+                reader.next();
+                validItemCategory = false;
+            }
+        } while (!validItemCategory);
+        return itemCategory;
+    }
+
+    public String askItemStatus(String statusInputMessage) {
+        String itemStatus = "";
+        boolean validItemStatus = false;
+        do {
+            objPrintOutput.printMessage("Enter Item Status (" + statusInputMessage + "): ");
+            if (reader.hasNextInt()) {
+                switch (reader.nextInt()) {
+                    case 1:
+                        itemStatus = ItemStatus.RUNNING_LOW.toString();
+                        validItemStatus = true;
+                        break;
+                    case 2:
+                        itemStatus = ItemStatus.NEED_TO_BUY.toString();
+                        validItemStatus = true;
+                        break;
+                    case 3:
+                        itemStatus = ItemStatus.BROUGHT.toString();
+                        validItemStatus = true;
+                        break;
+                    default:
+                        objPrintOutput.printMessage("Please select (" + statusInputMessage + "): ");
+                        validItemStatus = false;
+                        break;
+                }
+            } else {
+                objPrintOutput.printMessage("Please select (" + statusInputMessage + "): ");
+                reader.next();
+                validItemStatus = false;
+            }
+        } while (!validItemStatus);
+        return itemStatus;
+    }
+
+    public int askItemIndex(int numberOfItems, String operation) {
         int itemIndex = 0;
         boolean validItemIndex = false;
         do {
@@ -163,67 +228,5 @@ public class UserInput {
             }
         }
         return true;
-    }
-
-    public String askItemCategory(Scanner reader) {
-        String itemCategory = "";
-        boolean validItemCategory = false;
-        do {
-            objPrintOutput.printMessage("Enter Item Category (1." + ItemCategory.EDIBLE.toString() + " 2." + ItemCategory.INEDIBLE.toString() + "): ");
-            if (reader.hasNextInt()) {
-                switch (reader.nextInt()) {
-                    case 1:
-                        itemCategory = ItemCategory.EDIBLE.toString();
-                        validItemCategory = true;
-                        break;
-                    case 2:
-                        itemCategory = ItemCategory.INEDIBLE.toString();
-                        validItemCategory = true;
-                        break;
-                    default:
-                        objPrintOutput.printMessage("Please select 1." + ItemCategory.EDIBLE.toString() + " 2." + ItemCategory.INEDIBLE.toString() + "): ");
-                        reader.next();
-                        validItemCategory = false;
-                        break;
-                }
-            } else {
-                objPrintOutput.printMessage("Please select 1." + ItemCategory.EDIBLE.toString() + " 2." + ItemCategory.INEDIBLE.toString() + "): ");
-                reader.next();
-                validItemCategory = false;
-            }
-        } while (!validItemCategory);
-        return itemCategory;
-    }
-
-    public String askItemStatus(Scanner reader, String statusInputMessage) {
-        String itemStatus = "";
-        boolean validItemStatus = false;
-        do {
-            objPrintOutput.printMessage("Enter Item Status (" + statusInputMessage + "): ");
-            if (reader.hasNextInt()) {
-                switch (reader.nextInt()) {
-                    case 1:
-                        itemStatus = ItemStatus.RUNNING_LOW.toString();
-                        validItemStatus = true;
-                        break;
-                    case 2:
-                        itemStatus = ItemStatus.NEED_TO_BUY.toString();
-                        validItemStatus = true;
-                        break;
-                    case 3:
-                        itemStatus = ItemStatus.BROUGHT.toString();
-                        validItemStatus = true;
-                        break;
-                    default:
-                        objPrintOutput.printMessage("Please select (" + statusInputMessage + "): ");
-                        break;
-                }
-            } else {
-                objPrintOutput.printMessage("Please select (" + statusInputMessage + "): ");
-                reader.next();
-                validItemStatus = false;
-            }
-        } while (!validItemStatus);
-        return itemStatus;
     }
 }

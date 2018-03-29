@@ -11,12 +11,13 @@ package integration;
  */
 public enum ItemStatus {
     RUNNING_LOW("Running Low"), NEED_TO_BUY("Need to Buy"), BROUGHT("Brought");
-    private String status;
+    private final String status;
 
     ItemStatus(String status) {
         this.status = status;
     }
 
+    @Override
     public String toString() {
         return status;
     }

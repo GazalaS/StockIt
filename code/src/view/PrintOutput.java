@@ -45,6 +45,7 @@ public class PrintOutput {
     public void printMessage(String message) {
         System.out.print(message);
     }
+    
     public void printList(ArrayList<GroceryItemDTO> groceryListDTO, String operation) {
         groceryListDTO.stream()
                 .forEach((item) -> {
@@ -57,16 +58,16 @@ public class PrintOutput {
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
         StringBuilder stringBuilder = new StringBuilder();
         if (operation.equals("listByDate") || operation.equals("listByStatus") || operation.equals("listAll")) {
-            stringBuilder.append(String.format("%-5s", Integer.toString(item.getItemIndex()) + ". "));
-            stringBuilder.append(String.format("%-20s", item.getItemName()));
-            stringBuilder.append(String.format("%-20s", item.getQuantity()));
+            stringBuilder.append(String.format("%-5s ", Integer.toString(item.getItemIndex()) + ". "));
+            stringBuilder.append(String.format("%-20s ", item.getItemName()));
+            stringBuilder.append(String.format("%-20s ", item.getQuantity()));
         }
         if (operation.equals("listByStatus") || operation.equals("listAll")) {
-            stringBuilder.append(String.format("%-20s", formatter.format(item.getPurchaseByDate())));
-            stringBuilder.append(String.format("%-20s", item.getCategory()));
+            stringBuilder.append(String.format("%-20s ", formatter.format(item.getPurchaseByDate())));
+            stringBuilder.append(String.format("%-20s ", item.getCategory()));
         }
         if (operation.equals("listByDate") || operation.equals("listAll")) {
-            stringBuilder.append(String.format("%-20s", item.getStatus()));
+            stringBuilder.append(String.format("%-20s ", item.getStatus()));
         }
         return stringBuilder.toString();
     }

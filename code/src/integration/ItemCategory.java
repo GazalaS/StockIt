@@ -11,12 +11,13 @@ package integration;
  */
 public enum ItemCategory {
     EDIBLE("Edible"), INEDIBLE("Inedible");
-    private String category;
+    private final String category;
 
     ItemCategory(String category) {
         this.category = category;
     }
 
+    @Override
     public String toString() {
         return category;
     }

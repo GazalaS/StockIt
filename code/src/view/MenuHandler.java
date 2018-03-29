@@ -20,17 +20,17 @@ import integration.ItemStatus;
  * @author GazalaS <gazalafshaikh@gmail.com>
  */
 public class MenuHandler {
-    private Scanner reader;
-    private GroceryListController objGroceryListController;
-    private PrintOutput objPrintOutput;
-    private UserInput objUserInput;
-    private ListView objListView;
+    private final Scanner reader;
+    private final GroceryListController objGroceryListController;
+    private final PrintOutput objPrintOutput;
+    private final UserInput objUserInput;
+    private final ListView objListView;
 
     public MenuHandler(GroceryListController objGroceryListController) {
         reader = new Scanner(System.in);
         this.objGroceryListController = objGroceryListController;
         objPrintOutput = new PrintOutput();
-        objUserInput = new UserInput();
+        objUserInput = new UserInput(reader);
         objListView = new ListView(objGroceryListController);
     }
 
@@ -44,10 +44,8 @@ public class MenuHandler {
 
         while (true) {
             try {
-                //objPrintOutput.printlnMessage("\nPress Enter for Menu.");
-                //reader.nextLine();
                 objPrintOutput.printMenu();
-                int choice = objUserInput.askChoice(reader);
+                int choice = objUserInput.askChoice();
                 
                 objPrintOutput.printlnMessage("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
                 reader.nextLine();
@@ -107,15 +105,15 @@ public class MenuHandler {
         String itemName;
         String quantity;
         Date purchaseByDate;
-        String category = "";
-        String status = "";
+        String category;
+        String status;
 
-        itemName = objUserInput.askItemName(reader);
-        quantity = objUserInput.askItemQuantity(reader);
+        itemName = objUserInput.askItemName();
+        quantity = objUserInput.askItemQuantity();
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-        purchaseByDate = formatter.parse(objUserInput.askPurchaseByDate(reader));
-        category = objUserInput.askItemCategory(reader);
-        status = objUserInput.askItemStatus(reader, statusInputMessage);
+        purchaseByDate = formatter.parse(objUserInput.askPurchaseByDate());
+        category = objUserInput.askItemCategory();
+        status = objUserInput.askItemStatus(statusInputMessage);
 
         GroceryItemDTO objGroceryItemDTO = new GroceryItemDTO(itemIndex, itemName, quantity, purchaseByDate, category, status);
         return objGroceryItemDTO;
@@ -126,7 +124,7 @@ public class MenuHandler {
         int numberOfItems = objGroceryListController.getGroceryList().size();
         if (numberOfItems > 0) {
             objListView.showGroceryList();
-            itemIndex = objUserInput.askItemIndex(reader, numberOfItems, operation);
+            itemIndex = objUserInput.askItemIndex(numberOfItems, operation);
         } else {
             throw new EmptyListException("No Items to " + operation + ".\nPlease select Option 2 to Add Items.");
         }

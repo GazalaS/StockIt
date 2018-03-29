@@ -10,7 +10,7 @@ package view;
  * @author "GazalaS <gazalafshaikh@gmail.com>"
  */
 public class EmptyListException extends Exception {
-    public EmptyListException(String msg) {
-        super(msg);
+    public EmptyListException(String message) {
+        super(message);
     }
 }

@@ -14,12 +14,12 @@ import java.util.Date;
  */
 public class GroceryItemDTO implements Serializable {
 
-    private int itemIndex;
-    private String itemName;
-    private String quantity;
-    private Date purchaseByDate;
-    private String category;
-    private String status;
+    private final int itemIndex;
+    private final String itemName;
+    private final String quantity;
+    private final Date purchaseByDate;
+    private final String category;
+    private final String status;
 
     public GroceryItemDTO(int itemIndex, String itemName, String quantity, Date purchaseByDate, String category, String status) {
         this.itemIndex = itemIndex;

@@ -3,23 +3,23 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/tmp-sda-1175/sda3/ip/StockIt/code/src/sda3/ip/StockIt/controller/GroceryListController.java</file>
             <file>file:/Users/tmp-sda-1175/sda3/ip/StockIt/code/src/view/ListView.java</file>
             <file>file:/Users/tmp-sda-1175/sda3/ip/StockIt/code/src/model/IGroceryList.java</file>
+            <file>file:/Users/tmp-sda-1175/sda3/ip/StockIt/code/src/filedata/FileHandler.java</file>
             <file>file:/Users/tmp-sda-1175/sda3/ip/StockIt/code/src/view/MenuHandler.java</file>
-            <file>file:/Users/tmp-sda-1175/sda3/ip/StockIt/code/src/sda3/ip/StockIt/filedata/FileHandler.java</file>
             <file>file:/Users/tmp-sda-1175/sda3/ip/StockIt/code/src/integration/GroceryItemDTO.java</file>
             <file>file:/Users/tmp-sda-1175/sda3/ip/StockIt/code/src/model/GroceryList.java</file>
             <file>file:/Users/tmp-sda-1175/sda3/ip/StockIt/code/src/integration/ItemStatus.java</file>
             <file>file:/Users/tmp-sda-1175/sda3/ip/StockIt/code/src/startup/Main.java</file>
+            <file>file:/Users/tmp-sda-1175/sda3/ip/StockIt/code/src/filedata/FileProcessor.java</file>
             <file>file:/Users/tmp-sda-1175/sda3/ip/StockIt/code/src/view/EmptyListException.java</file>
             <file>file:/Users/tmp-sda-1175/sda3/ip/StockIt/code/src/view/UserInput.java</file>
-            <file>file:/Users/tmp-sda-1175/sda3/ip/StockIt/code/test/sda3/ip/stockit/test/model/GroceryItemTest.java</file>
             <file>file:/Users/tmp-sda-1175/sda3/ip/StockIt/code/src/model/GroceryItem.java</file>
             <file>file:/Users/tmp-sda-1175/sda3/ip/StockIt/code/src/view/DateValidator.java</file>
             <file>file:/Users/tmp-sda-1175/sda3/ip/StockIt/code/src/integration/ItemCategory.java</file>
             <file>file:/Users/tmp-sda-1175/sda3/ip/StockIt/code/src/view/PrintOutput.java</file>
-            <file>file:/Users/tmp-sda-1175/sda3/ip/StockIt/code/src/sda3/ip/StockIt/filedata/FileProcessor.java</file>
+            <file>file:/Users/tmp-sda-1175/sda3/ip/StockIt/code/test/model/GroceryItemTest.java</file>
+            <file>file:/Users/tmp-sda-1175/sda3/ip/StockIt/code/src/controller/GroceryListController.java</file>
         </group>
     </open-files>
 </project-private>
