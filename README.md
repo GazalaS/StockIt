@@ -8,5 +8,5 @@ A text based user interface via command line to maintain a Grocery List.
 6. Save the current Grocery List to file.
 7. The restore the Grocery List when application restarts.
 
-Class Diagram:
-![Class Diagram](../master/doc/StockIt_Class_Daigram.png)
+## Class Diagram:
+![Class Diagram](../master/doc/StockIt_Class_Diagram.png)
