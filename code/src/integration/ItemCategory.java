@@ -6,17 +6,25 @@
 package integration;
 
 /**
- *
+ * 
  * @author GazalaS <gazalafshaikh@gmail.com>
  */
 public enum ItemCategory {
     EDIBLE("Edible"), INEDIBLE("Inedible");
     private final String category;
 
+    /**
+     * This constructor Instantiates a new <code>{@link ItemCategory}</code>
+     * @param category 
+     */
     ItemCategory(String category) {
         this.category = category;
     }
-
+    
+    /**
+     * This method returns the category
+     * @return category The current value of category
+     */
     @Override
     public String toString() {
         return category;

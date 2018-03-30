@@ -15,7 +15,12 @@ import integration.ItemStatus;
  * @author "GazalaS <gazalafshaikh@gmail.com>"
  */
 public class PrintOutput {
-
+    
+    /**
+     * 
+     * @param countRunningLow
+     * @param countNeedToBuy 
+     */
     public void printWelcomeMessage(int countRunningLow, int countNeedToBuy) {
         System.out.println("***********************");
         System.out.println("* Welcome to Stock It *");
@@ -25,6 +30,9 @@ public class PrintOutput {
         System.out.println("***********************");
     }
 
+    /**
+     * 
+     */
     public void printMenu() {
         System.out.println();
         System.out.println("~~~~~~~~ Pick an Option ~~~~~~~~");
@@ -38,14 +46,27 @@ public class PrintOutput {
         System.out.print(">> ");     // print prompt
     }
 
+    /**
+     * 
+     * @param message 
+     */
     public void printlnMessage(String message) {
         System.out.println(message);
     }
     
+    /**
+     * 
+     * @param message 
+     */
     public void printMessage(String message) {
         System.out.print(message);
     }
     
+    /**
+     * 
+     * @param groceryListDTO
+     * @param operation 
+     */
     public void printList(ArrayList<GroceryItemDTO> groceryListDTO, String operation) {
         groceryListDTO.stream()
                 .forEach((item) -> {
@@ -53,7 +74,13 @@ public class PrintOutput {
                 });
         System.out.println();
     }
-
+    
+    /**
+     * 
+     * @param item
+     * @param operation
+     * @return 
+     */
     public String formatStringOutput(GroceryItemDTO item, String operation) {
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
         StringBuilder stringBuilder = new StringBuilder();

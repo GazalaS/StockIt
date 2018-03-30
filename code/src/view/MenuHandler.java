@@ -25,7 +25,11 @@ public class MenuHandler {
     private final PrintOutput objPrintOutput;
     private final UserInput objUserInput;
     private final ListView objListView;
-
+    
+    /**
+     * 
+     * @param objGroceryListController 
+     */
     public MenuHandler(GroceryListController objGroceryListController) {
         reader = new Scanner(System.in);
         this.objGroceryListController = objGroceryListController;
@@ -33,7 +37,13 @@ public class MenuHandler {
         objUserInput = new UserInput(reader);
         objListView = new ListView(objGroceryListController);
     }
-
+    
+    /**
+     * 
+     * @throws ParseException
+     * @throws IOException
+     * @throws ClassNotFoundException 
+     */
     public void processMenu() throws ParseException, IOException, ClassNotFoundException {
         objGroceryListController.readFromFile();
 
@@ -87,15 +97,28 @@ public class MenuHandler {
             }
         }
     }
-
+    
+    /**
+     * 
+     * @param status
+     * @return 
+     */
     private int getCount(String status) {
-        ArrayList<GroceryItemDTO> groceryListByStatusDTO = objGroceryListController.getGroceryListByStatus(status);
+        ArrayList<GroceryItemDTO> groceryListByStatusDTO = objGroceryListController.getGroceryListDTOByStatus(status);
         if (!groceryListByStatusDTO.isEmpty()) {
             return groceryListByStatusDTO.size();
         }
         return 0;
     }
-
+    
+    /**
+     * 
+     * @param operation
+     * @param statusInputMessage
+     * @return
+     * @throws ParseException
+     * @throws EmptyListException 
+     */
     private GroceryItemDTO createGroceryItemDTO(String operation, String statusInputMessage) throws ParseException, EmptyListException {
         int itemIndex = 0;
         if (operation.equals("Edit")) {
@@ -118,10 +141,16 @@ public class MenuHandler {
         GroceryItemDTO objGroceryItemDTO = new GroceryItemDTO(itemIndex, itemName, quantity, purchaseByDate, category, status);
         return objGroceryItemDTO;
     }
-
+    
+    /**
+     * 
+     * @param operation
+     * @return
+     * @throws EmptyListException 
+     */
     private int getItemIndex(String operation) throws EmptyListException {
         int itemIndex = 0;
-        int numberOfItems = objGroceryListController.getGroceryList().size();
+        int numberOfItems = objGroceryListController.getGroceryListDTO().size();
         if (numberOfItems > 0) {
             objListView.showGroceryList();
             itemIndex = objUserInput.askItemIndex(numberOfItems, operation);
