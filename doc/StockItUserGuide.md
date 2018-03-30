@@ -1,15 +1,7 @@
 # *StockIt* User Guide
------------------
-
-
 
 
 ## What is *StockIt*?
-
----------------
-
-
-
 
 *StockIt* is a text based user interface via command line to maintain a Grocery List.
 1. Allow user to create a Grocery List by adding new Items.
@@ -22,16 +14,8 @@
 8. Save the current Grocery List to file.
 9. Restores the Grocery List when application restarts.
 
-
-
-
-
+------------
 ## Installing Software
-
--------------------
-
-
-
 
 - Step 1: Download "StockIt.zip" and extract the files, example on Windows C Drive.
 
@@ -47,20 +31,16 @@
 			
 ![ExecuteApp](https://github.com/GazalaS/StockIt/blob/master/doc/img/executeapp.PNG)	
 
-
-
-## Using *StockIt*
-
 ------------
-
+## Using *StockIt*
 
 - Welcome Menu shows count of "Items to Buy" and "Items Running Low", if any followed by Menu Options as described below.
 
 ![WelcomeMenu](https://github.com/GazalaS/StockIt/blob/master/doc/img/welcomemenu.PNG)	
 
-
+------------
 ### <Option 1> Show Grocery List by Status
-
+------------
 - Choose option 1 on Menu screen.
 - If Grocery List is empty, you will be asked to add Items.
 
@@ -73,24 +53,24 @@
 
 ![Option1ItemsinList](https://github.com/GazalaS/StockIt/blob/master/doc/img/op1availableitems.PNG)
 
-
-
+------------
 ### <Option 2> Add a Grocery Item
+------------
 
-- Choose option 2 on Menu screen.
+- Choose option 2 on Menu screen to Add.
 - Please enter Item Name, Item Quantity, To be purchased by Date, Item Category & Item Status.
 	- Item Name should be Alphabetic only
 	- Item Quantity can be Numeric or Alpha numeric, eg both 2 and/or 2 kgs are valid
 	- To be purchased by Date should be current or future date and should be in format 'dd-mm-yyyy'
 	- Item Category can be 1.Edible or 2.Inedible. Please mention either 1 or 2
-	- Item Status can be 1. Running Low or 2.Need to Buy. Please mention either 1 or 2
+	- Item Status can be 1.Running Low or 2.Need to Buy. Please mention either 1 or 2
 - Upon adding right details about your item, it will be added in *StockIt* Grocery List.
-
 
 ![Option2AddItem](https://github.com/GazalaS/StockIt/blob/master/doc/img/op2additem.PNG)
 
-
+------------
 ### <Option 3> Edit a Grocery Item
+------------
 
 - Choose option 3 on Menu screen.
 - It will show you the items that have been added/edited in current or previous application sessions.
@@ -98,19 +78,20 @@
 
 ![Option3EditItemEmptyList](https://github.com/GazalaS/StockIt/blob/master/doc/img/op3edititememptylist.PNG)
 
-- Please select an item number to edit.
+- Please select an item number to Edit.
 - Please enter Item Name, Item Quantity, To be purchased by Date, Item Category & Item Status.
 	- Item Name should be Alphabetic only
 	- Item Quantity can be Numeric or Alpha numeric, eg both 2 and/or 2 kgs are valid
 	- To be purchased by Date should be current or future date and should be in format 'dd-mm-yyyy'
 	- Item Category can be 1.Edible or 2.Inedible. Please mention either 1 or 2
-	- Item Status can be 1. Running Low or 2.Need to Buy or 3. Brought. Please mention either 1 or 2 or 3
-- Upon adding right details about your item, it will be edited in *StockIt* Grocery List.
+	- Item Status can be 1.Running Low or 2.Need to Buy or 3. Brought. Please mention either 1 or 2 or 3
+- Upon adding right details about your item, it will be updated in *StockIt* Grocery List.
 
 ![Option3EditItem](https://github.com/GazalaS/StockIt/blob/master/doc/img/op3edititem.PNG)
 
-
+------------
 ### <Option 4> Remove a Grocery Item
+------------
 
 - Choose option 4 on Menu screen.
 - If there are no items to Remove, it will ask to Add an Item first.
@@ -124,18 +105,21 @@
 
 ![Option4RemoveItem](https://github.com/GazalaS/StockIt/blob/master/doc/img/op4removeitem.PNG)
 
+------------
 ### <Option 5> Show Grocery List for Today
+------------
 
 - Choose option 5 on Menu screen.
 - It will show you the items that have been added/edited in current or previous application sessions for today's date.
 
 ![Option5ShowbyDate](https://github.com/GazalaS/StockIt/blob/master/doc/img/op5showbydate.PNG)
 
-
+------------
 ### <Option 6> Save and Quit
+------------
 
 - Choose option 6 on Menu screen.
-- It will save the final list of items in a file for further processing.
+- It will save the final list of items in a File.
 - It will exit current session with greeting message.
 
 ![Option6SavenQuit](https://github.com/GazalaS/StockIt/blob/master/doc/img/op6savenquit.PNG)
