@@ -98,4 +98,31 @@ public class GroceryItem {
     public void setStatus(String status) {
         this.status = status;
     }
+    
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        GroceryItem groceryItem = (GroceryItem) o;
+        if (!itemName.equals(groceryItem.itemName)) {
+            return false;
+        }
+        if (!quantity.equals(groceryItem.quantity)) {
+            return false;
+        }
+        if ((purchaseByDate.compareTo(groceryItem.purchaseByDate) < 0)) {
+            return false;
+        }
+        if (!category.equals(groceryItem.category)) {
+            return false;
+        }
+        if (!status.equals(groceryItem.status)) {
+            return false;
+        }
+        return true;
+    }
 }

@@ -100,7 +100,7 @@ public class ListView {
         Date localDate = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
         String strTodaysDate = formatter.format(localDate);
-        ArrayList<GroceryItemDTO> groceryListByDateDTO = objGroceryListController.getGroceryListDTOByDate(strTodaysDate);
+        ArrayList<GroceryItemDTO> groceryListByDateDTO = objGroceryListController.getGroceryListDTOByDate();
         if (!groceryListByDateDTO.isEmpty()) {
             objPrintOutput.printlnMessage("List for Today: " + strTodaysDate);
             objPrintOutput.printList(groceryListByDateDTO, "listByDate");
