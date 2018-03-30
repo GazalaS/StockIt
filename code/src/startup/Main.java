@@ -12,19 +12,15 @@ import view.MenuHandler;
 
 /**
  * Starts the application
- *
  * @author GazalaS <gazalafshaikh@gmail.com>
  */
 public class Main {
 
     /**
      * This is the main method of the entire application.
-     *
      * @param args the command line arguments [not provided]
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-
         GroceryListController objGroceryListController = new GroceryListController();
         MenuHandler objMenuHandler = new MenuHandler(objGroceryListController);
         try {

@@ -10,6 +10,11 @@ package view;
  * @author "GazalaS <gazalafshaikh@gmail.com>"
  */
 public class EmptyListException extends Exception {
+    
+    /**
+     * 
+     * @param message 
+     */
     public EmptyListException(String message) {
         super(message);
     }

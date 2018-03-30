@@ -22,20 +22,32 @@ public class ListView {
     private final GroceryListController objGroceryListController;
     private final PrintOutput objPrintOutput;
 
+    /**
+     * 
+     * @param objGroceryListController 
+     */
     public ListView(GroceryListController objGroceryListController) {
         this.objGroceryListController = objGroceryListController;
         objPrintOutput = new PrintOutput();
     }
-
+    
+    /**
+     * 
+     * @throws EmptyListException 
+     */
     public void showGroceryList() throws EmptyListException {
-        ArrayList<GroceryItemDTO> groceryListDTO = objGroceryListController.getGroceryList();
+        ArrayList<GroceryItemDTO> groceryListDTO = objGroceryListController.getGroceryListDTO();
         if (!groceryListDTO.isEmpty()) {
             objPrintOutput.printList(groceryListDTO, "listAll");
         } else {
             throw new EmptyListException("Grocery List is empty.\nPlease select Option 2 to Add Items.");
         }
     }
-
+    
+    /**
+     * 
+     * @throws EmptyListException 
+     */
     public void showGroceryListByStatus() throws EmptyListException {
         ArrayList<GroceryItemDTO> listRunningLowItems = getGroceryListDTOByStatus(ItemStatus.RUNNING_LOW.toString());
         ArrayList<GroceryItemDTO> listNeedToBuyItems = getGroceryListDTOByStatus(ItemStatus.NEED_TO_BUY.toString());
@@ -68,17 +80,27 @@ public class ListView {
             }
         }
     }
-
+    
+    /**
+     * 
+     * @param status
+     * @return 
+     */
     private ArrayList<GroceryItemDTO> getGroceryListDTOByStatus(String status) {
-        ArrayList<GroceryItemDTO> groceryListByStatusDTO = objGroceryListController.getGroceryListByStatus(status);
+        ArrayList<GroceryItemDTO> groceryListByStatusDTO = objGroceryListController.getGroceryListDTOByStatus(status);
         return groceryListByStatusDTO;
     }
-
+    
+    /**
+     * 
+     * @throws ParseException
+     * @throws EmptyListException 
+     */
     public void showGroceryListByDate() throws ParseException, EmptyListException {
         Date localDate = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
         String strTodaysDate = formatter.format(localDate);
-        ArrayList<GroceryItemDTO> groceryListByDateDTO = objGroceryListController.getGroceryListByDate(strTodaysDate);
+        ArrayList<GroceryItemDTO> groceryListByDateDTO = objGroceryListController.getGroceryListDTOByDate(strTodaysDate);
         if (!groceryListByDateDTO.isEmpty()) {
             objPrintOutput.printlnMessage("List for Today: " + strTodaysDate);
             objPrintOutput.printList(groceryListByDateDTO, "listByDate");

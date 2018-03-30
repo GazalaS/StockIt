@@ -20,11 +20,19 @@ public class UserInput {
     private final PrintOutput objPrintOutput;
     private final Scanner reader;
 
+    /**
+     * 
+     * @param reader 
+     */
     public UserInput(Scanner reader) {
         objPrintOutput = new PrintOutput();
         this.reader = reader;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public int askChoice() {
         int choice = 0;
         boolean validChoice = false;
@@ -41,8 +49,13 @@ public class UserInput {
             }
         } while (!validChoice);
         return choice;
-    }
-
+    }    
+   
+    /**
+     * 
+     * @param choice
+     * @return 
+     */
     private boolean isValidChoice(int choice) {
         if (choice < 0) {
             objPrintOutput.printlnMessage("Choose option between 1-6");
@@ -52,7 +65,11 @@ public class UserInput {
         }
         return true;
     }
-
+    
+    /**
+     * 
+     * @return 
+     */
     public String askItemName() {
         String itemName = "";
         boolean validItemName = false;
@@ -66,6 +83,11 @@ public class UserInput {
         return itemName;
     }
 
+    /**
+     * 
+     * @param itemName
+     * @return 
+     */
     private boolean isValidItemName(String itemName) {
         if (itemName == null || itemName.trim().isEmpty()) {
             objPrintOutput.printlnMessage("Item Name cannot be empty. Please enter Item Name.");
@@ -76,7 +98,11 @@ public class UserInput {
         }
         return true;
     }
-
+    
+    /**
+     * 
+     * @return 
+     */
     public String askItemQuantity() {
         String quantity = "";
         boolean validQuantity = false;
@@ -89,7 +115,12 @@ public class UserInput {
         } while (!validQuantity);
         return quantity;
     }
-
+    
+    /**
+     * 
+     * @param quantity
+     * @return 
+     */
     private boolean isValidQuantity(String quantity) {
         if (quantity == null || quantity.trim().isEmpty()) {
             objPrintOutput.printlnMessage("Item Quantity cannot be empty. Please enter Item Quantity.");
@@ -100,7 +131,11 @@ public class UserInput {
         }
         return true;
     }
-
+    
+    /**
+     * 
+     * @return 
+     */
     public String askPurchaseByDate() {
         String purchaseByDate = "";
         boolean validPurchaseByDate = false;
@@ -113,7 +148,12 @@ public class UserInput {
         } while (!validPurchaseByDate);
         return purchaseByDate;
     }
-
+    
+    /**
+     * 
+     * @param purchaseByDate
+     * @return 
+     */
     private boolean isValidPurchaseDate(String purchaseByDate) {
         DateValidator dateValidator = new DateValidator();
         Date localDate = new Date();
@@ -131,7 +171,11 @@ public class UserInput {
         }
         return true;
     }
-
+    
+    /**
+     * 
+     * @return 
+     */
     public String askItemCategory() {
         String itemCategory = "";
         boolean validItemCategory = false;
@@ -161,7 +205,12 @@ public class UserInput {
         } while (!validItemCategory);
         return itemCategory;
     }
-
+    
+    /**
+     * 
+     * @param statusInputMessage
+     * @return 
+     */
     public String askItemStatus(String statusInputMessage) {
         String itemStatus = "";
         boolean validItemStatus = false;
@@ -194,7 +243,13 @@ public class UserInput {
         } while (!validItemStatus);
         return itemStatus;
     }
-
+    
+    /**
+     * 
+     * @param numberOfItems
+     * @param operation
+     * @return 
+     */
     public int askItemIndex(int numberOfItems, String operation) {
         int itemIndex = 0;
         boolean validItemIndex = false;
@@ -212,7 +267,13 @@ public class UserInput {
         reader.nextLine();
         return itemIndex;
     }
-
+    
+    /**
+     * 
+     * @param itemIndex
+     * @param numberOfItems
+     * @return 
+     */
     private boolean isValidItemIndex(int itemIndex, int numberOfItems) {
         if (itemIndex <= 0) {
             objPrintOutput.printlnMessage("Item Number can not be zero or negative value");

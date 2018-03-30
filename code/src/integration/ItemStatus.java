@@ -12,11 +12,19 @@ package integration;
 public enum ItemStatus {
     RUNNING_LOW("Running Low"), NEED_TO_BUY("Need to Buy"), BROUGHT("Brought");
     private final String status;
-
+    
+    /**
+     * This constructor Instantiates a new <code>{@link ItemStatus}</code>
+     * @param status 
+     */
     ItemStatus(String status) {
         this.status = status;
     }
 
+    /**
+     * This method returns the Status
+     * @return status The current value of the status
+     */
     @Override
     public String toString() {
         return status;

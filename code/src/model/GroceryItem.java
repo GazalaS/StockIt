@@ -18,43 +18,83 @@ public class GroceryItem {
     private Date purchaseByDate;
     private String category;
     private String status;
-
+    
+    /**
+     * 
+     * @return 
+     */
     public String getItemName() {
         return itemName;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public Date getPurchaseByDate() {
         return purchaseByDate;
     }
-
+    
+    /**
+     * 
+     * @return 
+     */
     public String getQuantity() {
         return quantity;
     }
-
+    
+    /**
+     * 
+     * @return 
+     */
     public String getCategory() {
         return category;
     }
-
+    
+    /**
+     * 
+     * @return 
+     */
     public String getStatus() {
         return status;
     }
-
+    
+    /**
+     * 
+     * @param itemName 
+     */
     public void setItemName(String itemName) {
         this.itemName = itemName;
     }
-
+    
+    /**
+     * 
+     * @param purchaseByDate 
+     */
     public void setPurchaseByDate(Date purchaseByDate) {
         this.purchaseByDate = purchaseByDate;
     }
-
+    
+    /**
+     * 
+     * @param quantity 
+     */
     public void setQuantity(String quantity) {
         this.quantity = quantity;
     }
-
+    
+    /**
+     * 
+     * @param category 
+     */
     public void setCategory(String category) {
         this.category = category;
     }
-
+    
+    /**
+     * 
+     * @param status 
+     */
     public void setStatus(String status) {
         this.status = status;
     }

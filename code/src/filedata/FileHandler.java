@@ -5,29 +5,37 @@
  */
 package filedata;
 
-/**
- *
- * @author GazalaS <gazalafshaikh@gmail.com>
- */
+
 import integration.GroceryItemDTO;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Read and Save <code>{@Link}GroceryItemDTO</code> 
+ * @author GazalaS gazalafshaikh@gmail.com
+ */
 public class FileHandler {
 
     private static final String GROCERY_LIST_FILE = "grocerylist.ser";
 
-    /**
-     * @return 
-     * @throws java.lang.ClassNotFoundException
-     * @throws java.io.IOException
-     */
+  /**
+   * Read List of <code>{@link GroceryItemDTO}</code> from the file
+   * passes it to the controller.
+   * @return objGroceryItemDTOList Populated list of <code>{@link GroceryItemDTO}</code>
+   * @throws IOException if we failed to read from file
+   * @throws ClassNotFoundException if we failed to read Object
+   */
     public ArrayList<GroceryItemDTO> readFromFile() throws IOException, ClassNotFoundException {
         FileProcessor<GroceryItemDTO> objFP = new FileProcessor<>();
         ArrayList<GroceryItemDTO> objGroceryItemDTOList = objFP.readFromFile(GROCERY_LIST_FILE);
         return objGroceryItemDTOList;
     }
-
+    
+    /**
+     * Save List of <code>{@link GroceryItemDTO}</code> into the file
+     * @param groceryListDTO List of <code>{@link GroceryItemDTO}</code> to save to file
+     * @throws IOException if we failed to write into file
+     */
     public void saveToFile(ArrayList<GroceryItemDTO> groceryListDTO) throws IOException {
         FileProcessor<GroceryItemDTO> objFP = new FileProcessor<>();
         objFP.saveToFile(GROCERY_LIST_FILE, groceryListDTO);
