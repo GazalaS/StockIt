@@ -1,33 +1,32 @@
-StockIt User Guide
-
-=================
-
+# *StockIt* User Guide
+-----------------
 
 
 
-What is **StockIt**?
+
+## What is *StockIt*?
 
 ---------------
 
 
 
 
-StockIt is a text based user interface via command line to maintain a Grocery List.
-1.Allow user to create a Grocery List by adding new Items.
-2.Assign them Quantity, Status and PurchaseByDate.
-3.Choose a category they might belong to.
-4.Modify an Item on the list.
-5.Remove the Item from the list.
-6.Show the Grocery List for current date.
-7.Show the Grocery List based on current status.
-8.Save the current Grocery List to file.
-9.Restores the Grocery List when application restarts.
+*StockIt* is a text based user interface via command line to maintain a Grocery List.
+1. Allow user to create a Grocery List by adding new Items.
+2. Assign them Quantity, Status and PurchaseByDate.
+3. Choose a category they might belong to.
+4. Modify an Item on the list.
+5. Remove the Item from the list.
+6. Show the Grocery List for current date.
+7. Show the Grocery List based on current status.
+8. Save the current Grocery List to file.
+9. Restores the Grocery List when application restarts.
 
 
 
 
 
-Installing Software
+## Installing Software
 
 -------------------
 
@@ -36,26 +35,28 @@ Installing Software
 
 - Step 1: Download "StockIt.zip" and extract the files, example on Windows C Drive.
 
-![Download](../master/doc/img/zipsave.png)
+![Download](https://github.com/GazalaS/StockIt/blob/master/doc/img/zipsave.PNG)
 
 - Step 2: Open command prompt and traverse to extraction directory, example C:/StockIt/StockIt .
 
-![Extract](../master/doc/img/extractfiles.png)
+![Extract](https://github.com/GazalaS/StockIt/blob/master/doc/img/extractfiles.PNG)
 
 - Step 3: Execute the jar with command 
 			java -jar "sda3.ip.stockit.jar"
 
 			
-![ExecuteApp](../master/doc/img/executeapp.png)	
+![ExecuteApp](https://github.com/GazalaS/StockIt/blob/master/doc/img/executeapp.PNG)	
 
-Using **StockIt**
+
+
+## Using *StockIt*
 
 ------------
 
 
-- Welcome Menu shows "Items to Buy" and "Items Running Low", if any followed by multiple options as described below.
+- Welcome Menu shows count of "Items to Buy" and "Items Running Low", if any followed by Menu Options as described below.
 
-![WelcomeMenu](../master/doc/img/welcomemenu.png)	
+![WelcomeMenu](https://github.com/GazalaS/StockIt/blob/master/doc/img/welcomemenu.PNG)	
 
 
 ### <Option 1> Show Grocery List by Status
@@ -63,14 +64,14 @@ Using **StockIt**
 - Choose option 1 on Menu screen.
 - If Grocery List is empty, you will be asked to add Items.
 
-![Option1EmptyList](../master/doc/img/op1emptylist.png)
+![Option1EmptyList](https://github.com/GazalaS/StockIt/blob/master/doc/img/op1emptylist.PNG)
 
-- If there are items in Grocery List, you will be able to see items filtered into 3 statuses and sorted by date i.e.
+- If there are items in Grocery List, you will be able to see items filtered into 3 status and sorted by date.
 	- Items Running Low
 	- Items Need to Buy
 	- Items Brought
 
-![Option1ItemsinList](../master/doc/img/op1availableitems.png)
+![Option1ItemsinList](https://github.com/GazalaS/StockIt/blob/master/doc/img/op1availableitems.PNG)
 
 
 
@@ -83,10 +84,10 @@ Using **StockIt**
 	- To be purchased by Date should be current or future date and should be in format 'dd-mm-yyyy'
 	- Item Category can be 1.Edible or 2.Inedible. Please mention either 1 or 2
 	- Item Status can be 1. Running Low or 2.Need to Buy. Please mention either 1 or 2
-- Upon adding right details about your item, it will be added in StockIt Grocery List.
+- Upon adding right details about your item, it will be added in *StockIt* Grocery List.
 
 
-![Option2AddItem](../master/doc/img/op2additem.png)
+![Option2AddItem](https://github.com/GazalaS/StockIt/blob/master/doc/img/op2additem.PNG)
 
 
 ### <Option 3> Edit a Grocery Item
@@ -95,7 +96,7 @@ Using **StockIt**
 - It will show you the items that have been added/edited in current or previous application sessions.
 - If there are no items to Edit, it will ask to Add an Item first.
 
-![Option3EditItemEmptyList](../master/doc/img/op3edititememptylist.png)
+![Option3EditItemEmptyList](https://github.com/GazalaS/StockIt/blob/master/doc/img/op3edititememptylist.PNG)
 
 - Please select an item number to edit.
 - Please enter Item Name, Item Quantity, To be purchased by Date, Item Category & Item Status.
@@ -104,9 +105,9 @@ Using **StockIt**
 	- To be purchased by Date should be current or future date and should be in format 'dd-mm-yyyy'
 	- Item Category can be 1.Edible or 2.Inedible. Please mention either 1 or 2
 	- Item Status can be 1. Running Low or 2.Need to Buy or 3. Brought. Please mention either 1 or 2 or 3
-- Upon adding right details about your item, it will be edited in StockIt Grocery List.
+- Upon adding right details about your item, it will be edited in *StockIt* Grocery List.
 
-![Option3EditItem](../master/doc/img/op3edititem.png)
+![Option3EditItem](https://github.com/GazalaS/StockIt/blob/master/doc/img/op3edititem.PNG)
 
 
 ### <Option 4> Remove a Grocery Item
@@ -114,21 +115,21 @@ Using **StockIt**
 - Choose option 4 on Menu screen.
 - If there are no items to Remove, it will ask to Add an Item first.
 
-![Option4RemoveItemEmptyList](../master/doc/img/op4removeitememptylist.png)
+![Option4RemoveItemEmptyList](https://github.com/GazalaS/StockIt/blob/master/doc/img/op4removeitememptylist.PNG)
 
 - It will show you the items that have been added/edited in current or previous application sessions.
 - Please select an item number to remove.
-- It will remove selected item from StockIt Grocery List.
+- It will remove selected item from *StockIt* Grocery List.
 
 
-![Option4RemoveItem](../master/doc/img/op4removeitem.png)
+![Option4RemoveItem](https://github.com/GazalaS/StockIt/blob/master/doc/img/op4removeitem.PNG)
 
 ### <Option 5> Show Grocery List for Today
 
 - Choose option 5 on Menu screen.
 - It will show you the items that have been added/edited in current or previous application sessions for today's date.
 
-![Option5ShowbyDate](../master/doc/img/op5showbydate.png)
+![Option5ShowbyDate](https://github.com/GazalaS/StockIt/blob/master/doc/img/op5showbydate.PNG)
 
 
 ### <Option 6> Save and Quit
@@ -137,4 +138,4 @@ Using **StockIt**
 - It will save the final list of items in a file for further processing.
 - It will exit current session with greeting message.
 
-![Option6SavenQuit](../master/doc/img/op6savenquit.png)
+![Option6SavenQuit](https://github.com/GazalaS/StockIt/blob/master/doc/img/op6savenquit.PNG)
