@@ -80,14 +80,13 @@ public class GroceryList implements IGroceryList<GroceryItem> {
 
     /**
      *
-     * @param strTodaysDate
      * @return groceryList
      * @throws java.text.ParseException
      */
     @Override
-    public ArrayList<GroceryItem> getGroceryListByDate(String strTodaysDate) throws ParseException {
+    public ArrayList<GroceryItem> getGroceryListByDate() throws ParseException {
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-        Date todaysDate = formatter.parse(strTodaysDate);
+        Date todaysDate = formatter.parse(formatter.format(new Date()));
 
         return groceryList.stream()
                 .filter((GroceryItem item) -> {

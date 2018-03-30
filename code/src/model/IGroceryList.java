@@ -24,5 +24,5 @@ interface IGroceryList<T> {
 
     ArrayList<T> getGroceryListByStatus(String status);
 
-    ArrayList<T> getGroceryListByDate(String strTodaysDate) throws ParseException;
+    ArrayList<T> getGroceryListByDate() throws ParseException;
 }

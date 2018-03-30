@@ -134,14 +134,13 @@ public class GroceryListController {
     /**
      * This method returns ArrayList to view which includes all <code>{@link}GroceryItemDTO</code>
      * whose Purchase by Date matches todays date
-     * Gets the <code>{@link}GroceryList</code> from the model with the specified Date
+     * Gets the <code>{@link}GroceryList</code> from the model with the Todays Date
      * Populates ArrayList of <code>{@link}GroceryItemDTO</code> with <code>{@link}GroceryItem</code>
-     * @param strTodaysDate Date on which we need to filter the <code>{@link}GroceryList</code>
      * @return groceryListByDateDTO filtered ArrayList of <code>{@link}GroceryItemDTO</code> for the specified date
      * @throws ParseException if we failed to Parse String into Date
      */
-    public ArrayList<GroceryItemDTO> getGroceryListDTOByDate(String strTodaysDate) throws ParseException {
-        ArrayList<GroceryItem> groceryListByDate = objGroceryList.getGroceryListByDate(strTodaysDate);
+    public ArrayList<GroceryItemDTO> getGroceryListDTOByDate() throws ParseException {
+        ArrayList<GroceryItem> groceryListByDate = objGroceryList.getGroceryListByDate();
         ArrayList<GroceryItemDTO> groceryListByDateDTO = new ArrayList<>();
         populateGroceryListDTO(groceryListByDate, groceryListByDateDTO);
         return groceryListByDateDTO;

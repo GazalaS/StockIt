@@ -37,9 +37,9 @@ public class PrintOutput {
         System.out.println();
         System.out.println("~~~~~~~~ Pick an Option ~~~~~~~~");
         System.out.println("1. Show Grocery List by Status");
-        System.out.println("2. Add an Grocery Item");
-        System.out.println("3. Edit an Grocery Item");
-        System.out.println("4. Remove an Grocery Item");
+        System.out.println("2. Add a Grocery Item");
+        System.out.println("3. Edit a Grocery Item");
+        System.out.println("4. Remove a Grocery Item");
         System.out.println("5. Show Grocery List for Today");
         System.out.println("6. Save and Quit");
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");

@@ -5,7 +5,6 @@
  */
 package model;
 
-import model.GroceryItem;
 import java.util.Date;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -19,12 +18,15 @@ import static org.junit.Assert.*;
  * @author GazalaS <gazalafshaikh@gmail.com>
  */
 public class GroceryItemTest {
+    private GroceryItem expected;
     
     public GroceryItemTest() {
+        expected = new GroceryItem(); 
+        
     }
     
     @BeforeClass
-    public static void setUpClass() {
+    public static void setUpClass() {   
     }
     
     @AfterClass
@@ -33,30 +35,42 @@ public class GroceryItemTest {
     
     @Before
     public void setUp() {
+        expected.setItemName("Apples");
+        expected.setQuantity("2 kgs");
+       
+        expected.setCategory("Edible");
+        expected.setStatus("Running Low");
     }
     
     @After
     public void tearDown() {
     }
 
+    @Test
+    public void testGetItemNameNull() {
+        GroceryItem instance = new GroceryItem();
+        String expResult = null;
+        String result = instance.getItemName();
+        assertEquals(expResult, result);
+    }
+    
     /**
      * Test of getItemName method, of class GroceryItem.
      */
     @Test
     public void testGetItemName() {
-        System.out.println("getItemName");
-        GroceryItem instance = new GroceryItem();
-        String expResult = "";
+        GroceryItem instance = expected;
+        String expResult = expected.getItemName();
         String result = instance.getItemName();
         assertEquals(expResult, result);
     }
-
+    
+    
     /**
      * Test of getPurchaseByDate method, of class GroceryItem.
      */
     @Test
-    public void testGetPurchaseByDate() {
-        System.out.println("getPurchaseByDate");
+    public void testGetPurchaseByDateNull() {
         GroceryItem instance = new GroceryItem();
         Date expResult = null;
         Date result = instance.getPurchaseByDate();
@@ -67,10 +81,9 @@ public class GroceryItemTest {
      * Test of getQuantity method, of class GroceryItem.
      */
     @Test
-    public void testGetQuantity() {
-        System.out.println("getQuantity");
+    public void testGetQuantityNull() {
         GroceryItem instance = new GroceryItem();
-        String expResult = "";
+        String expResult = null;
         String result = instance.getQuantity();
         assertEquals(expResult, result);
     }
@@ -79,10 +92,9 @@ public class GroceryItemTest {
      * Test of getCategory method, of class GroceryItem.
      */
     @Test
-    public void testGetCategory() {
-        System.out.println("getCategory");
+    public void testGetCategoryNull() {
         GroceryItem instance = new GroceryItem();
-        String expResult = "";
+        String expResult = null;
         String result = instance.getCategory();
         assertEquals(expResult, result);
     }
@@ -91,10 +103,9 @@ public class GroceryItemTest {
      * Test of getStatus method, of class GroceryItem.
      */
     @Test
-    public void testGetStatusEmpty() {
-        System.out.println("getStatus");
+    public void testGetStatusNull() {
         GroceryItem instance = new GroceryItem();
-        String expResult = "";
+        String expResult = null;
         String result = instance.getStatus();
         assertEquals(expResult, result);
     }
@@ -104,11 +115,10 @@ public class GroceryItemTest {
      * Test of getStatus method, of class GroceryItem.
      */
     @Test
-    public void testGetStatusWithTitle() {
-        System.out.println("getStatus");
-        GroceryItem item = new GroceryItem();
-        String expResult = "";
-        String result = item.getStatus();
+    public void testGetStatus() {
+        GroceryItem instance = expected;
+        String expResult = expected.getStatus();
+        String result = instance.getStatus();
         assertEquals(expResult, result);
     }
 
@@ -117,8 +127,7 @@ public class GroceryItemTest {
      */
     @Test
     public void testSetItemName() {
-        System.out.println("setItemName");
-        String itemName = "Apples";
+        String itemName = "";
         GroceryItem instance = new GroceryItem();
         instance.setItemName(itemName);
     }
@@ -128,7 +137,6 @@ public class GroceryItemTest {
      */
     @Test
     public void testSetPurchaseByDate() {
-        System.out.println("setPurchaseByDate");
         Date purchaseByDate = null;
         GroceryItem instance = new GroceryItem();
         instance.setPurchaseByDate(purchaseByDate);
@@ -139,7 +147,6 @@ public class GroceryItemTest {
      */
     @Test
     public void testSetQuantity() {
-        System.out.println("setQuantity");
         String quantity = "";
         GroceryItem instance = new GroceryItem();
         instance.setQuantity(quantity);
@@ -150,7 +157,6 @@ public class GroceryItemTest {
      */
     @Test
     public void testSetCategory() {
-        System.out.println("setCategory");
         String category = "";
         GroceryItem instance = new GroceryItem();
         instance.setCategory(category);
@@ -161,7 +167,6 @@ public class GroceryItemTest {
      */
     @Test
     public void testSetStatus() {
-        System.out.println("setStatus");
         String status = "";
         GroceryItem instance = new GroceryItem();
         instance.setStatus(status);

@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.Scanner;
 import integration.ItemCategory;
 import integration.ItemStatus;
+import java.text.ParseException;
 
 /**
  *
@@ -136,7 +137,7 @@ public class UserInput {
      * 
      * @return 
      */
-    public String askPurchaseByDate() {
+    public String askPurchaseByDate() throws ParseException {
         String purchaseByDate = "";
         boolean validPurchaseByDate = false;
         do {
@@ -154,18 +155,18 @@ public class UserInput {
      * @param purchaseByDate
      * @return 
      */
-    private boolean isValidPurchaseDate(String purchaseByDate) {
-        DateValidator dateValidator = new DateValidator();
-        Date localDate = new Date();
+    private boolean isValidPurchaseDate(String purchaseByDate) throws ParseException {
+        DateValidator dateValidator = new DateValidator();       
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-        String strTodaysDate = formatter.format(localDate);
+        Date localDate = formatter.parse(formatter.format(new Date()));
+        
         if (purchaseByDate == null || purchaseByDate.trim().isEmpty()) {
             objPrintOutput.printlnMessage("Purchase By Date cannot be empty. Please enter Purchase By Date.");
             return false;
         } else if (!dateValidator.validate(purchaseByDate)) {
             objPrintOutput.printlnMessage("Invalid Date. Purchase By Date Format dd-mm-yyyy");
             return false;
-        } else if ((purchaseByDate.compareTo(strTodaysDate) < 0)) {
+        } else if ((formatter.parse(purchaseByDate).compareTo(localDate) < 0)) {
             objPrintOutput.printlnMessage("Purchase By Date can not be a past Date");
             return false;
         }
@@ -178,7 +179,7 @@ public class UserInput {
      */
     public String askItemCategory() {
         String itemCategory = "";
-        boolean validItemCategory = false;
+        boolean validItemCategory = false;     
         do {
             objPrintOutput.printMessage("Enter Item Category (1." + ItemCategory.EDIBLE.toString() + " 2." + ItemCategory.INEDIBLE.toString() + "): ");
             if (reader.hasNextInt()) {
@@ -192,13 +193,13 @@ public class UserInput {
                         validItemCategory = true;
                         break;
                     default:
-                        objPrintOutput.printMessage("Please select 1." + ItemCategory.EDIBLE.toString() + " 2." + ItemCategory.INEDIBLE.toString() + "): ");
+                        objPrintOutput.printMessage("Please select (1." + ItemCategory.EDIBLE.toString() + " 2." + ItemCategory.INEDIBLE.toString() + "): ");
                         reader.next();
                         validItemCategory = false;
                         break;
                 }
             } else {
-                objPrintOutput.printMessage("Please select 1." + ItemCategory.EDIBLE.toString() + " 2." + ItemCategory.INEDIBLE.toString() + "): ");
+                objPrintOutput.printMessage("Please select (1." + ItemCategory.EDIBLE.toString() + " 2." + ItemCategory.INEDIBLE.toString() + "): ");
                 reader.next();
                 validItemCategory = false;
             }

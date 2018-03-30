@@ -10,6 +10,7 @@ import java.util.Date;
 
 /**
  * DTO used to transfer data between layers.
+ *
  * @author GazalaS gazalafshaikh@gmail.com
  */
 public class GroceryItemDTO implements Serializable {
@@ -23,6 +24,7 @@ public class GroceryItemDTO implements Serializable {
 
     /**
      * Instantiates a new <code>{@link GroceryItemDTO}</code>
+     *
      * @param itemIndex Index of the Item
      * @param itemName Name of the Item
      * @param quantity Quantity of the Item
@@ -40,8 +42,11 @@ public class GroceryItemDTO implements Serializable {
     }
 
     /**
-     * This method returns the Item Index {@see #itemIndex}.
-     * @return itemIndex The current value of {@link #itemIndex} of the particular  Item
+     * This method returns the Item Index {
+     *
+     * @see #itemIndex}.
+     * @return itemIndex The current value of {@link #itemIndex} of the
+     * particular Item
      */
     public int getItemIndex() {
         return itemIndex;
@@ -49,6 +54,7 @@ public class GroceryItemDTO implements Serializable {
 
     /**
      * This method returns the Item Name
+     *
      * @return itemName The current value of itemName of the particular Item
      */
     public String getItemName() {
@@ -57,14 +63,17 @@ public class GroceryItemDTO implements Serializable {
 
     /**
      * This method returns the Purchase By Date
-     * @return purchaseByDate The current value of purchaseByDate of the particular Item
+     *
+     * @return purchaseByDate The current value of purchaseByDate of the
+     * particular Item
      */
     public Date getPurchaseByDate() {
         return purchaseByDate;
     }
-    
+
     /**
      * This method returns the Item Quantity
+     *
      * @return quantity The current value of quantity of the particular Item
      */
     public String getQuantity() {
@@ -73,18 +82,46 @@ public class GroceryItemDTO implements Serializable {
 
     /**
      * This method returns the Item Category
+     *
      * @return category The current value of category of the particular Item
      */
     public String getCategory() {
         return category;
     }
 
-    
     /**
      * This method returns the Item Category
+     *
      * @return status The current value of status of the particular Item
      */
     public String getStatus() {
         return status;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        GroceryItemDTO groceryItemDTO = (GroceryItemDTO) o;
+        if (!itemName.equals(groceryItemDTO.itemName)) {
+            return false;
+        }
+        if (!quantity.equals(groceryItemDTO.quantity)) {
+            return false;
+        }
+        if ((purchaseByDate.compareTo(groceryItemDTO.purchaseByDate) < 0)) {
+            return false;
+        }
+        if (!category.equals(groceryItemDTO.category)) {
+            return false;
+        }
+        if (!status.equals(groceryItemDTO.status)) {
+            return false;
+        }
+        return true;
     }
 }
