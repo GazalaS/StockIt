@@ -11,4 +11,4 @@ A text based user interface via command line to maintain a Grocery List.
 * Restores the Grocery List when application restarts.
 
 ## Class Diagram:
-![Class Diagram](../master/doc/StockIt_Class_Diagram.png)
+![Class Diagram](../master/doc/img/tockIt_Class_Diagram.png)
