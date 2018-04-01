@@ -17,7 +17,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- * Generic File Processor to read and save Generic objects.
+ * Generic Class File Processor to read and save Generic objects.
  * @author GazalaS gazalafshaikh@gmail.com
  * @param <T> Generic object
  */
