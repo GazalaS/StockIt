@@ -16,8 +16,9 @@ import java.util.Date;
 import sda3.ip.stockit.integration.ItemStatus;
 
 /**
- *
- * @author GazalaS <gazalafshaikh@gmail.com>
+ * This is an important class of View.
+ * It handles processing of Menu Option selected by the User
+ * @author GazalaS gazalafshaikh@gmail.com
  */
 public class MenuHandler {
     private final Scanner reader;
@@ -27,8 +28,14 @@ public class MenuHandler {
     private final ListView objListView;
     
     /**
-     * 
-     * @param objGroceryListController 
+     * This constructor Instantiates a new <code>{@link MenuHandler}</code> and creates:
+     * <code>{@link Scanner}</code> object 
+     * <code>{@link GroceryListController}</code> object
+     * <code>{@link PrintOutput}</code> object 
+     * <code>{@link UserInput}</code> object
+     * <code>{@link ListView}</code> object
+     * @param objGroceryListController Reference to the <code>{@link GroceryListController}</code> class 
+     *                                 created in <code>{@link startup.Main}</code>.
      */
     public MenuHandler(GroceryListController objGroceryListController) {
         reader = new Scanner(System.in);
@@ -39,10 +46,11 @@ public class MenuHandler {
     }
     
     /**
-     * 
-     * @throws ParseException
-     * @throws IOException
-     * @throws ClassNotFoundException 
+     * Handles the processing of the Menu Option.
+     * It take required action depending on the Choice entered by the User
+     * @throws ParseException if failed to Parse the Date
+     * @throws IOException if failed to access File
+     * @throws ClassNotFoundException if failed to read and write objects
      */
     public void processMenu() throws ParseException, IOException, ClassNotFoundException {
         objGroceryListController.readFromFile();
@@ -99,9 +107,10 @@ public class MenuHandler {
     }
     
     /**
-     * 
-     * @param status
-     * @return 
+     * The count of <code>{@link GroceryItemDTO}</code> with the specified status
+     * @param status filter the list with item that has the status specified
+     * @return the list size if not empty
+     *         0 if the list is empty
      */
     private int getCount(String status) {
         ArrayList<GroceryItemDTO> groceryListByStatusDTO = objGroceryListController.getGroceryListDTOByStatus(status);
@@ -112,12 +121,13 @@ public class MenuHandler {
     }
     
     /**
-     * 
-     * @param operation
-     * @param statusInputMessage
-     * @return
-     * @throws ParseException
-     * @throws EmptyListException 
+     * It collects the input from the User and creates an <code>{@link integration.GroceryItemDTO}</code> 
+     * to be passed to Model to add or edit an Item. In case of Edit it will also the Item Index.
+     * @param operation add or edit an Item
+     * @param statusInputMessage Message to display when asking input from User
+     * @return objGroceryItemDTO DTO objects that holds the data to be added or updated.
+     * @throws ParseException if failed to Parse a Date
+     * @throws EmptyListException if the Grocery List is empty and operation is edit.
      */
     private GroceryItemDTO createGroceryItemDTO(String operation, String statusInputMessage) throws ParseException, EmptyListException {
         int itemIndex = 0;
@@ -143,10 +153,10 @@ public class MenuHandler {
     }
     
     /**
-     * 
-     * @param operation
-     * @return
-     * @throws EmptyListException 
+     * It collects the input for Item Index to be edited or removed.
+     * @param operation edit or remove
+     * @return itemIndex Index at which the specified Item is to be updated or removed 
+     * @throws EmptyListException if the Grocery List is empty and operation is edit or remove
      */
     private int getItemIndex(String operation) throws EmptyListException {
         int itemIndex = 0;

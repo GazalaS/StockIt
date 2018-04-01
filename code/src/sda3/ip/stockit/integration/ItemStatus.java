@@ -6,8 +6,11 @@
 package sda3.ip.stockit.integration;
 
 /**
- *
- * @author GazalaS <gazalafshaikh@gmail.com>
+ * Item Status identifies priority of an Item.
+ * {@link #RUNNING_LOW} indicates that Item quantity is low 
+ * {@link #NEED_TO_BUY} indicates that Item is finished and need to be brought 
+ * {@link #BROUGHT} indicates that Item is already brought
+ * @author GazalaS gazalafshaikh@gmail.com
  */
 public enum ItemStatus {
     RUNNING_LOW("Running Low"), NEED_TO_BUY("Need to Buy"), BROUGHT("Brought");

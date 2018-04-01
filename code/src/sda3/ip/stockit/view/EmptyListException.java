@@ -6,14 +6,16 @@
 package sda3.ip.stockit.view;
 
 /**
- *
- * @author "GazalaS <gazalafshaikh@gmail.com>"
+ * Thrown when the List is empty while performing an operation when the list is empty.
+ * The message might contain more information about the error condition.
+ * @author "GazalaS gazalafshaikh@gmail.com"
  */
 public class EmptyListException extends Exception {
     
     /**
-     * 
-     * @param message 
+     * This constructor Instantiates a new <code>{@link EmptyListException}</code>
+     * representing the condition described in the specified message.
+     * @param message A message that describes what went wrong
      */
     public EmptyListException(String message) {
         super(message);
