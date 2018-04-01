@@ -186,7 +186,7 @@ public class GroceryListController {
     /**
      * Before the application exits this method saves Grocery List into File.
      * Populates list of <code>{@link GroceryItemDTO}</code> from <code>{@link GroceryItem}</code> 
-     * Passed the list of <code>{@link GroceryItemDTO}</code> to <code>{@link filedata.FileHandler#saveToFile()}</code>
+     * Passed the list of <code>{@link GroceryItemDTO}</code> to <code>{@link filedata.FileHandler#saveToFile(java.util.ArrayList)}</code>
      * to write on to the File.
      * @throws IOException if failed to write into File
      */

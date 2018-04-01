@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * Read and Save <code>{@Link GroceryItemDTO}</code> 
+ * Read and Save <code>{@link integration.GroceryItemDTO}</code> 
  * @author GazalaS gazalafshaikh@gmail.com
  */
 public class FileHandler {
@@ -21,7 +21,7 @@ public class FileHandler {
   /**
    * Read List of <code>{@link GroceryItemDTO}</code> from the file
    * passes it to the controller.
-   * Read the objects stored into file <code>{@link filedata.FileProcessor#readFromFile(filename)}</code>
+   * Read the objects stored into file <code>{@link FileProcessor#readFromFile(java.lang.String)}</code>
    * @return objGroceryItemDTOList Populated list of <code>{@link GroceryItemDTO}</code>
    * @throws IOException if failed to read from file
    * @throws ClassNotFoundException if failed to read Object
@@ -34,8 +34,8 @@ public class FileHandler {
     
     /**
      * Save List of <code>{@link GroceryItemDTO}</code> into the file.
-     * saves the ArrayList passed into file <code>{@link filedata.FileProcessor#saveToFile(filename,groceryListDTO)}</code>
-     * @param groceryListDTO List of <code>{@link GroceryItemDTO}</code> to save to file
+     * saves the ArrayList passed into file <code>{@link FileProcessor#saveToFile(java.lang.String, java.util.ArrayList)}</code>
+     * @param groceryListDTO List of <code>{@link integration.GroceryItemDTO}</code> to save to file
      * @throws IOException if we failed to write into file
      */
     public void saveToFile(ArrayList<GroceryItemDTO> groceryListDTO) throws IOException {

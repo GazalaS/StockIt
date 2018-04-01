@@ -12,16 +12,16 @@ import integration.ItemStatus;
 
 /**
  * Prints messages and formatted data on the console.
- * @author "GazalaS <gazalafshaikh@gmail.com>"
+ * @author "GazalaS gazalafshaikh@gmail.com"
  */
 public class PrintOutput {
     
     /**
      * Prints Welcome Message when application is loaded.
-     * @param countRunningLow the count of <code>{@link GroceryItem}</code>  with the status as {@link ItemStatus.NEED_TO_BUY} 
-     *                        the count is 0 when no <code>{@link GroceryItem}</code> in Grocery list with status Running Low  
-     * @param countNeedToBuy the count of <code>{@link GroceryItem}</code>  with the status as {@link ItemStatus.NEED_TO_BUY}. 
-     *                       the count is 0 when no <code>{@link GroceryItem}</code> in Grocery list with status {@link ItemStatus.NEED_TO_BUY}
+     * @param countRunningLow the count of <code>{@link model.GroceryItem}</code>  with the status as {@link integration.ItemStatus#RUNNING_LOW} 
+     *                        the count is 0 when no <code>{@link model.GroceryItem}</code> in Grocery list with status {@link integration.ItemStatus#RUNNING_LOW}   
+     * @param countNeedToBuy the count of <code>{@link model.GroceryItem}</code>  with the status as {@link integration.ItemStatus#NEED_TO_BUY}. 
+     *                       the count is 0 when no <code>{@link model.GroceryItem}</code> in Grocery list with status {@link integration.ItemStatus#NEED_TO_BUY}
      */
     public void printWelcomeMessage(int countRunningLow, int countNeedToBuy) {
         System.out.println("***********************");
@@ -87,7 +87,7 @@ public class PrintOutput {
      *                  if operation is <code>listAll</code> it will display all the details of the <code>Item</code>.
      *                  if operation is <code>listByStatus</code> it will display all the details of the <code>Item</code> except <code>Item Status</code>.
      *                  if operation is <code>listByDate</code> it will display all <code>Item Name</code>, <code>Item Quantity</code> and <code>Item Status</code>.    
-     * @return 
+     * @return Formatted Output String to display 
      */
     public String formatStringOutput(GroceryItemDTO item, String operation) {
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");

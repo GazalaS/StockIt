@@ -14,7 +14,7 @@ import java.text.ParseException;
 
 /**
  * Prompts User to enter Input and validates the data entered 
- * @author "GazalaS <gazalafshaikh@gmail.com>"
+ * @author "GazalaS gazalafshaikh@gmail.com"
  */
 public class UserInput {
 
@@ -23,7 +23,7 @@ public class UserInput {
 
    /**
      * This constructor Instantiates a new <code>{@link UserInput}</code>.
-     * and creates <code>{@link PrintOutput}</code> object and <code>{@link GroceryListController}</code>
+     * and creates <code>{@link PrintOutput}</code> object and <code>{@link controller.GroceryListController}</code>
      * @param reader Reference to the <code>{@link Scanner}</code> class created in <code>{@link startup.Main}</code>.
      */
     public UserInput(Scanner reader) {
@@ -33,7 +33,7 @@ public class UserInput {
 
     /**
      * This method reads the users choice from the Menu option.
-     * If choice is valid it returns the choice to <code>{@link MenuHandler.processMenu()}</code>
+     * If choice is valid it returns the choice to <code>{@link MenuHandler#processMenu()}</code>
      * Loops till the choice is valid option between 1-6.
      * @return the valid choice.
      */

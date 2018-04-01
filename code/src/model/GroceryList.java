@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
  * Implementation of {<code>{@link IGroceryList} interface</code>
  * Add, edit and remove a <code>{@link GroceryItem}</code>
  * Filter list based on Status and Purchase by date
- * @author GazalaS <gazalafshaikh@gmail.com>
+ * @author GazalaS gazalafshaikh@gmail.com
  */
 public class GroceryList implements IGroceryList<GroceryItem> {
 

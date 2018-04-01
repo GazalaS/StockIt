@@ -9,7 +9,7 @@ import java.util.Date;
 
 /**
  * Holds the details about individual Item. 
- * @author GazalaS <gazalafshaikh@gmail.com>
+ * @author GazalaS gazalafshaikh@gmail.com
  */
 public class GroceryItem {
 

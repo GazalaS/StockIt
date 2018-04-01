@@ -12,7 +12,7 @@ import view.MenuHandler;
 
 /**
  * Starts the application
- * @author GazalaS <gazalafshaikh@gmail.com>
+ * @author GazalaS gazalafshaikh@gmail.com
  */
 public class Main {
 

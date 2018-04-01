@@ -18,7 +18,7 @@ import integration.ItemStatus;
 /**
  * This is an important class of View.
  * It handles processing of Menu Option selected by the User
- * @author GazalaS <gazalafshaikh@gmail.com>
+ * @author GazalaS gazalafshaikh@gmail.com
  */
 public class MenuHandler {
     private final Scanner reader;
@@ -121,7 +121,7 @@ public class MenuHandler {
     }
     
     /**
-     * It collects the input from the User and creates an <code>{@link GroceryItemDTO}</code> 
+     * It collects the input from the User and creates an <code>{@link integration.GroceryItemDTO}</code> 
      * to be passed to Model to add or edit an Item. In case of Edit it will also the Item Index.
      * @param operation add or edit an Item
      * @param statusInputMessage Message to display when asking input from User

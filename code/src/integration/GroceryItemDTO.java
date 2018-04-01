@@ -42,7 +42,6 @@ public class GroceryItemDTO implements Serializable {
 
     /**
      * This method returns the Item Index 
-     * @see #itemIndex.
      * @return itemIndex The current value of {@link #itemIndex} of the
      * particular Item
      */

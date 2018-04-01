@@ -9,7 +9,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * @source
+ * source
  * http://www.mkyong.com/regular-expressions/how-to-validate-date-with-regular-expression/
  */
 public class DateValidator {

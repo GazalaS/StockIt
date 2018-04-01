@@ -8,7 +8,7 @@ package view;
 /**
  * Thrown when the List is empty while performing an operation when the list is empty.
  * The message might contain more information about the error condition.
- * @author "GazalaS <gazalafshaikh@gmail.com>"
+ * @author "GazalaS gazalafshaikh@gmail.com"
  */
 public class EmptyListException extends Exception {
     

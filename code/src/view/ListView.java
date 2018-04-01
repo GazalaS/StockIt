@@ -14,9 +14,9 @@ import java.util.ArrayList;
 import java.util.Date;
 
 /**
- * Displays the List of <code>{@link GroceryItem}</code>.
+ * Displays the List of <code>{@link model.GroceryItem}</code>.
  * Entire list, list filtered on status and list filtered on todays date.
- * @author "GazalaS <gazalafshaikh@gmail.com>"
+ * @author "GazalaS gazalafshaikh@gmail.com"
  */
 public class ListView {
 
@@ -102,7 +102,7 @@ public class ListView {
      * If List available for a status it will display list or 
      * displays message if no Items with that particular status.
      * @throws EmptyListException thrown if grocery list is empty with a message that describes what went wrong.
-     * @throws ParseException
+     * @throws ParseException if failed to parse Date   
      */
     public void showGroceryListByDate() throws ParseException, EmptyListException {
         Date localDate = new Date();
