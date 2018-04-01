@@ -3,17 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view;
+package sda3.ip.stockit.view;
 
-import integration.GroceryItemDTO;
+import sda3.ip.stockit.integration.GroceryItemDTO;
 import java.util.Scanner;
-import controller.GroceryListController;
+import sda3.ip.stockit.controller.GroceryListController;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import integration.ItemStatus;
+import sda3.ip.stockit.integration.ItemStatus;
 
 /**
  *

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package filedata;
+package sda3.ip.stockit.filedata;
 
 import java.io.EOFException;
 import java.io.File;

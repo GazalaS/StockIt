@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
+package sda3.ip.stockit.controller;
 
-import filedata.FileHandler;
-import model.GroceryList;
-import integration.GroceryItemDTO;
+import sda3.ip.stockit.filedata.FileHandler;
+import sda3.ip.stockit.model.GroceryList;
+import sda3.ip.stockit.integration.GroceryItemDTO;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
-import model.GroceryItem;
+import sda3.ip.stockit.model.GroceryItem;
 
 /**
  * This is the applications only controller class. All calls to the Model pass through

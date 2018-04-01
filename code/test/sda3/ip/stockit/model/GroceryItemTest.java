@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model;
+package sda3.ip.stockit.model;
 
+import sda3.ip.stockit.model.GroceryItem;
 import java.util.Date;
 import org.junit.After;
 import org.junit.AfterClass;

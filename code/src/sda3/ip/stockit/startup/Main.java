@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package startup;
+package sda3.ip.stockit.startup;
 
-import controller.GroceryListController;
+import sda3.ip.stockit.controller.GroceryListController;
 import java.io.IOException;
 import java.text.ParseException;
-import view.MenuHandler;
+import sda3.ip.stockit.view.MenuHandler;
 
 /**
  * Starts the application

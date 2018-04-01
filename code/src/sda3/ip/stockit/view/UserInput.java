@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view;
+package sda3.ip.stockit.view;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
-import integration.ItemCategory;
-import integration.ItemStatus;
+import sda3.ip.stockit.integration.ItemCategory;
+import sda3.ip.stockit.integration.ItemStatus;
 import java.text.ParseException;
 
 /**

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view;
+package sda3.ip.stockit.view;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

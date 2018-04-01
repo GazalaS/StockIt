@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package filedata;
+package sda3.ip.stockit.filedata;
 
-import integration.GroceryItemDTO;
+import sda3.ip.stockit.integration.GroceryItemDTO;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import org.junit.After;
@@ -14,7 +14,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.junit.Ignore;
+
 
 /**
  *
