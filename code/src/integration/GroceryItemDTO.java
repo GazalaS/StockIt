@@ -10,7 +10,6 @@ import java.util.Date;
 
 /**
  * DTO used to transfer data between layers.
- *
  * @author GazalaS gazalafshaikh@gmail.com
  */
 public class GroceryItemDTO implements Serializable {
@@ -42,9 +41,8 @@ public class GroceryItemDTO implements Serializable {
     }
 
     /**
-     * This method returns the Item Index {
-     *
-     * @see #itemIndex}.
+     * This method returns the Item Index 
+     * @see #itemIndex.
      * @return itemIndex The current value of {@link #itemIndex} of the
      * particular Item
      */
@@ -54,8 +52,7 @@ public class GroceryItemDTO implements Serializable {
 
     /**
      * This method returns the Item Name
-     *
-     * @return itemName The current value of itemName of the particular Item
+     * @return itemName The current value of {@link #itemName} of the particular Item
      */
     public String getItemName() {
         return itemName;
@@ -63,8 +60,7 @@ public class GroceryItemDTO implements Serializable {
 
     /**
      * This method returns the Purchase By Date
-     *
-     * @return purchaseByDate The current value of purchaseByDate of the
+     * @return purchaseByDate The current value of {@link #purchaseByDate} of the
      * particular Item
      */
     public Date getPurchaseByDate() {
@@ -73,8 +69,7 @@ public class GroceryItemDTO implements Serializable {
 
     /**
      * This method returns the Item Quantity
-     *
-     * @return quantity The current value of quantity of the particular Item
+     * @return quantity The current value of  {@link #quantity} of the particular Item
      */
     public String getQuantity() {
         return quantity;
@@ -82,22 +77,29 @@ public class GroceryItemDTO implements Serializable {
 
     /**
      * This method returns the Item Category
-     *
-     * @return category The current value of category of the particular Item
+     * @return category The current value of {@link #category} of the particular Item
      */
     public String getCategory() {
         return category;
     }
 
     /**
-     * This method returns the Item Category
-     *
-     * @return status The current value of status of the particular Item
+     * This method returns the Item Status
+     * @return status The current value of {@link #status} of the particular Item
      */
     public String getStatus() {
         return status;
     }
 
+    /**
+     * Equals to compare two objects and its value.
+     * @param o Object to be compared
+     * @return true if both the objects are same
+     *              if all the values match
+     *         false if object is null
+     *               if object is of a different type
+     *               if any of the value is not same
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) {

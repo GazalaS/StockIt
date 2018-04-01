@@ -14,7 +14,8 @@ import java.util.ArrayList;
 import java.util.Date;
 
 /**
- *
+ * Displays the List of <code>{@link GroceryItem}</code>.
+ * Entire list, list filtered on status and list filtered on todays date.
  * @author "GazalaS <gazalafshaikh@gmail.com>"
  */
 public class ListView {
@@ -23,8 +24,10 @@ public class ListView {
     private final PrintOutput objPrintOutput;
 
     /**
-     * 
-     * @param objGroceryListController 
+     * This constructor Instantiates a new <code>{@link GroceryListController}</code>.
+     * and creates <code>{@link PrintOutput}</code> object and <code>{@link GroceryListController}</code>
+     * @param objGroceryListController Reference to the <code>{@link GroceryListController}</code> class 
+     *                                 created in <code>{@link startup.Main}</code>.
      */
     public ListView(GroceryListController objGroceryListController) {
         this.objGroceryListController = objGroceryListController;
@@ -32,8 +35,8 @@ public class ListView {
     }
     
     /**
-     * 
-     * @throws EmptyListException 
+     * Displays the entire Grocery List with all the details.
+     * @throws EmptyListException when grocery list is empty 
      */
     public void showGroceryList() throws EmptyListException {
         ArrayList<GroceryItemDTO> groceryListDTO = objGroceryListController.getGroceryListDTO();
@@ -45,8 +48,10 @@ public class ListView {
     }
     
     /**
-     * 
-     * @throws EmptyListException 
+     * Displays the entire Grocery List filtered as per status.
+     * If List available for a status it will display list or 
+     * displays message if no Items with that particular status.
+     * @throws EmptyListException thrown if grocery list is empty with a message that describes what went wrong.
      */
     public void showGroceryListByStatus() throws EmptyListException {
         ArrayList<GroceryItemDTO> listRunningLowItems = getGroceryListDTOByStatus(ItemStatus.RUNNING_LOW.toString());
@@ -82,9 +87,10 @@ public class ListView {
     }
     
     /**
-     * 
-     * @param status
-     * @return 
+     * This method returns filtered Grocery List as per status.
+     * List would contain items who's status matches the specified status  
+     * @param status filter the list with item that has the status specified 
+     * @return groceryListByStatusDTO filtered ArrayList of <code>{@link GroceryItem}</code> 
      */
     private ArrayList<GroceryItemDTO> getGroceryListDTOByStatus(String status) {
         ArrayList<GroceryItemDTO> groceryListByStatusDTO = objGroceryListController.getGroceryListDTOByStatus(status);
@@ -92,9 +98,11 @@ public class ListView {
     }
     
     /**
-     * 
+     * Displays the Grocery List filtered for todays Date.
+     * If List available for a status it will display list or 
+     * displays message if no Items with that particular status.
+     * @throws EmptyListException thrown if grocery list is empty with a message that describes what went wrong.
      * @throws ParseException
-     * @throws EmptyListException 
      */
     public void showGroceryListByDate() throws ParseException, EmptyListException {
         Date localDate = new Date();

@@ -12,9 +12,10 @@ import java.util.Date;
 import java.util.stream.Collectors;
 
 /**
- * Maintains ArrayList of <code>{@link GroceryItem}</code>
- * We can manipulate Grocery List and add, edit and remove a <code>{@link GroceryItem}</code>
- * 
+ * Maintains ArrayList of <code>{@link GroceryItem}</code>.
+ * Implementation of {<code>{@link IGroceryList} interface</code>
+ * Add, edit and remove a <code>{@link GroceryItem}</code>
+ * Filter list based on Status and Purchase by date
  * @author GazalaS <gazalafshaikh@gmail.com>
  */
 public class GroceryList implements IGroceryList<GroceryItem> {
@@ -22,15 +23,16 @@ public class GroceryList implements IGroceryList<GroceryItem> {
     ArrayList<GroceryItem> groceryList;
     
     /**
-     * 
+     * This constructor Instantiates a <code>{@link GroceryList}</code> 
+     * and creates an ArrayList <code>{@link GroceryItem}</code> 
      */
     public GroceryList() {
         groceryList = new ArrayList<>();
     }
 
     /**
-     * 
-     * @return groceryList
+     * This methods returns the entire GroceryList
+     * @return groceryList ArrayList of <code>{@link GroceryItem}</code>
      */
     @Override
     public ArrayList<GroceryItem> getGroceryList() {
@@ -38,8 +40,8 @@ public class GroceryList implements IGroceryList<GroceryItem> {
     }
     
     /**
-     * 
-     * @param objGroceryItem 
+     * This method adds <code>{@link GroceryItem}</code> to end of the GroceryList
+     * @param objGroceryItem Item to be added into the List
      */
     @Override
     public void addGroceryItem(GroceryItem objGroceryItem) {
@@ -47,9 +49,9 @@ public class GroceryList implements IGroceryList<GroceryItem> {
     }
     
     /**
-     * 
-     * @param itemIndex
-     * @param objGroceryItem 
+     * This method updates <code>{@link GroceryItem}</code> to the GroceryList
+     * @param itemIndex index at which the specified Item is to be updated 
+     * @param objGroceryItem the item to be updated
      */
     @Override
     public void editGroceryItem(int itemIndex, GroceryItem objGroceryItem) {
@@ -57,8 +59,8 @@ public class GroceryList implements IGroceryList<GroceryItem> {
     }
     
     /**
-     * 
-     * @param itemIndex 
+     * This method removes <code>{@link GroceryItem}</code> to the GroceryList
+     * @param itemIndex Index location of the Item to be removed
      */
     @Override
     public void removeGroceryItem(int itemIndex) {
@@ -66,9 +68,10 @@ public class GroceryList implements IGroceryList<GroceryItem> {
     }
     
     /**
-     * 
-     * @param status
-     * @return groceryList
+     * This method returns filtered Grocery List as per status.
+     * List would contain items who's status matches the specified status  
+     * @param status filter the list with item that has the status specified 
+     * @return groceryList filtered ArrayList of <code>{@link GroceryItem}</code> 
      */
     @Override
     public ArrayList<GroceryItem> getGroceryListByStatus(String status) {
@@ -79,9 +82,10 @@ public class GroceryList implements IGroceryList<GroceryItem> {
     }
 
     /**
-     *
-     * @return groceryList
-     * @throws java.text.ParseException
+     * This method return filtered Grocery List as per todays Date.
+     * List would contain items who purchase date is Todays Date
+     * @return groceryList filtered ArrayList of <code>{@link GroceryItem}</code> 
+     * @throws java.text.ParseException if failed to Parse Todays Date
      */
     @Override
     public ArrayList<GroceryItem> getGroceryListByDate() throws ParseException {

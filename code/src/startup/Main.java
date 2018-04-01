@@ -18,6 +18,9 @@ public class Main {
 
     /**
      * This is the main method of the entire application.
+     * Creates
+     * <code>{@link GroceryListController}</code> object 
+     * <code>{@link MenuHandler}</code> object
      * @param args the command line arguments [not provided]
      */
     public static void main(String[] args) {

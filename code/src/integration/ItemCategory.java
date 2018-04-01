@@ -6,7 +6,9 @@
 package integration;
 
 /**
- * 
+ * Item Category for Classification of Items.
+ * {@link #EDIBLE} when an Item can be consumed
+ * {@link #INEDIBLE} when an Item cant not be consumed
  * @author GazalaS <gazalafshaikh@gmail.com>
  */
 public enum ItemCategory {
