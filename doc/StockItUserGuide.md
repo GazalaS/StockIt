@@ -36,7 +36,7 @@
 
 - Welcome Menu shows count of "Items to Buy" and "Items Running Low", if any followed by Menu Options as described below.
 
-![WelcomeMenu](https://github.com/GazalaS/StockIt/blob/master/doc/img/welcomemenu.PNG)	
+![WelcomeMenu](https://github.com/GazalaS/StockIt/blob/master/doc/img/welcomemenu.png)
 
 ------------
 ### <Option 1> Show Grocery List by Status
