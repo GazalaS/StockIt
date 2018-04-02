@@ -44,7 +44,7 @@ public class MenuHandler {
         objUserInput = new UserInput(reader);
         objListView = new ListView(objGroceryListController);
     }
-    
+
     /**
      * Handles the processing of the Menu Option.
      * It take required action depending on the Choice entered by the User
@@ -112,7 +112,7 @@ public class MenuHandler {
      * @return the list size if not empty
      *         0 if the list is empty
      */
-    private int getCount(String status) {
+    int getCount(String status) {
         ArrayList<GroceryItemDTO> groceryListByStatusDTO = objGroceryListController.getGroceryListDTOByStatus(status);
         if (!groceryListByStatusDTO.isEmpty()) {
             return groceryListByStatusDTO.size();
