@@ -12,8 +12,15 @@
 * Show the Grocery List filtered by current date and sorted by status.
 * Show the Grocery List filtered on status and sorted on Date.
 * Save the current Grocery List to File.
-* Restores the Grocery List when application restarts.
-
+* Restores the Grocery List when application restarts
+* Item Status identifies priority of an Item.
+	 * Running Low indicates that Item quantity is low 
+	 * Need to Buy indicates that Item is finished and need to be brought 
+	 * Brought indicates that Item is already brought	 
+* Item Category for Classification of Items.
+ 	* Edible when an Item can be consumed
+ 	* Inedible when an Item cant not be consumed	 
+	
 ------------
 ## Installing Software
 
@@ -34,9 +41,13 @@
 ------------
 ## Using *StockIt*
 
-- Welcome Menu shows count of "Items to Buy" and "Items Running Low", if any followed by Menu Options as described below.
+- When application is executed for first time. Welcome Menu displays count as zero of "Items to Buy" and "Items Running Low"
 
-![WelcomeMenu](https://github.com/GazalaS/StockIt/blob/master/doc/img/welcomemenu.png)
+![WelcomeMenu](https://github.com/GazalaS/StockIt/blob/master/doc/img/welcomemenu.PNG)
+
+- When application is reloaded. Welcome Menu shows count of "Items to Buy" and "Items Running Low", if any followed by Menu Options as described below.
+
+![WelcomeMenuDisplayCount](https://github.com/GazalaS/StockIt/blob/master/doc/img/welcomemenudisplaycount.png)
 
 ------------
 ### <Option 1> Show Grocery List by Status
@@ -110,6 +121,10 @@
 ------------
 
 - Choose option 5 on Menu screen.
+- If there are no items for Today, it will ask to Add an Items.
+
+![Option5ShowbyDate](https://github.com/GazalaS/StockIt/blob/master/doc/img/op5showbydateemptylist.png)
+
 - It will show you the items that have been added/edited in current or previous application sessions for today's date.
 
 ![Option5ShowbyDate](https://github.com/GazalaS/StockIt/blob/master/doc/img/op5showbydate.PNG)
@@ -120,6 +135,9 @@
 
 - Choose option 6 on Menu screen.
 - It will save the final list of items in a File.
+
+![Option6SavenQuit](https://github.com/GazalaS/StockIt/blob/master/doc/img/file.png)
+
 - It will exit current session with greeting message.
 
 ![Option6SavenQuit](https://github.com/GazalaS/StockIt/blob/master/doc/img/op6savenquit.PNG)
